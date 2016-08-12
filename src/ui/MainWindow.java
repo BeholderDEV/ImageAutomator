@@ -5,6 +5,9 @@
  */
 package ui;
 
+import core.web.ResourcesGetter;
+import java.util.ArrayList;
+
 /**
  *
  * @author 5663296
@@ -37,7 +40,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel1.setText("URL");
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText("http://lite.acad.univali.br/temideianarede/");
 
         jButton1.setText("Get Images URLs");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +88,13 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ResourcesGetter crw = new ResourcesGetter();
+        crw.getListaRecursos().add(jTextField1.getText());
+        ArrayList<String> listaCodigos = crw.carregarRecursos();
+
+        String codigoHTML = listaCodigos.get(0);
         
+        jTextArea1.setText(codigoHTML);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

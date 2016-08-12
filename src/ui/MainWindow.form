@@ -66,7 +66,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
+        <Property name="text" type="java.lang.String" value="http://lite.acad.univali.br/temideianarede/"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
