@@ -56,9 +56,9 @@ public class AlphabetGenerator {
     public static void main(String[] args) {
         String site = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z";
         leters = site.toLowerCase().replace(" ", "");
-        alphabet = leters.concat("=\"");
-//        System.out.println(generateAlphabet());
-//        System.out.println("--------------");
+        alphabet = leters.concat("=\"/.0123456789!@#$%¨&*()_-{}[]:;<>,");
+        System.out.println(generateAlphabet());
+        System.out.println("\n\n--------------\n\n");
         
         System.out.println("//transições de q0");
         System.out.println(generateMatrix("q0", 18, "q1"));

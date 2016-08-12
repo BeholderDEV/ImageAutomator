@@ -36,8 +36,27 @@ public class ImageVerifier {
 
         String codigoHTML = listaCodigos.get(0).trim();
 
+        
+
+
+        //mapa de estados
+        String[] estados = new String[7];
+        estados[0] = "q0";
+        estados[1] = "q1";
+        estados[2] = "q2";
+        estados[3] = "q3";
+        estados[4] = "q4";
+        estados[5] = "q5";
+        estados[6] = "q6";
+
+        String estado_inicial = "q0";
+
+        //estados finais
+        String[] estados_finais = new String[1];
+        estados_finais[0] = "q6";
+        
         //mapa do alfabeto
-        char[] alfabeto = new char[28];
+        char[] alfabeto = new char[61];
         alfabeto[0] = 'a';
         alfabeto[1] = 'b';
         alfabeto[2] = 'c';
@@ -66,26 +85,43 @@ public class ImageVerifier {
         alfabeto[25] = 'z';
         alfabeto[26] = '=';
         alfabeto[27] = '"';
-
-
-        //mapa de estados
-        String[] estados = new String[7];
-        estados[0] = "q0";
-        estados[1] = "q1";
-        estados[2] = "q2";
-        estados[3] = "q3";
-        estados[4] = "q4";
-        estados[5] = "q5";
-        estados[6] = "q6";
-
-        String estado_inicial = "q0";
-
-        //estados finais
-        String[] estados_finais = new String[1];
-        estados_finais[0] = "q6";
-
+        alfabeto[28] = '/';
+        alfabeto[29] = '.';
+        alfabeto[30] = '0';
+        alfabeto[31] = '1';
+        alfabeto[32] = '2';
+        alfabeto[33] = '3';
+        alfabeto[34] = '4';
+        alfabeto[35] = '5';
+        alfabeto[36] = '6';
+        alfabeto[37] = '7';
+        alfabeto[38] = '8';
+        alfabeto[39] = '9';
+        alfabeto[40] = '!';
+        alfabeto[41] = '@';
+        alfabeto[42] = '#';
+        alfabeto[43] = '$';
+        alfabeto[44] = '%';
+        alfabeto[45] = '¨';
+        alfabeto[46] = '&';
+        alfabeto[47] = '*';
+        alfabeto[48] = '(';
+        alfabeto[49] = ')';
+        alfabeto[50] = '_';
+        alfabeto[51] = '-';
+        alfabeto[52] = '{';
+        alfabeto[53] = '}';
+        alfabeto[54] = '[';
+        alfabeto[55] = ']';
+        alfabeto[56] = ':';
+        alfabeto[57] = ';';
+        alfabeto[58] = '<';
+        alfabeto[59] = '>';
+        alfabeto[60] = ',';
+        
         //tabela de transição de AFD para reconhecimento números de dois dígitos
-        int[][] matriz = new int[7][28];
+        int[][] matriz = new int[7][61];
+        
         //transições de q0
         matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, 'a')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, 'b')] = -1;
@@ -115,6 +151,39 @@ public class ImageVerifier {
         matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, 'z')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '=')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '"')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '/')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '.')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '0')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '1')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '2')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '3')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '4')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '5')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '6')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '7')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '8')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '9')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '!')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '@')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '#')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '$')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '%')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '¨')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '&')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '*')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '(')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, ')')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '_')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '-')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '{')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '}')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '[')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, ']')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, ':')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, ';')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '<')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '>')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, ',')] = -1;
 
         //transições de q1
         matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, 'a')] = -1;
@@ -145,6 +214,39 @@ public class ImageVerifier {
         matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, 'z')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '=')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '"')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '/')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '.')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '0')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '1')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '2')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '3')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '4')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '5')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '6')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '7')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '8')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '9')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '!')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '@')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '#')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '$')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '%')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '¨')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '&')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '*')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '(')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, ')')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '_')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '-')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '{')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '}')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '[')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, ']')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, ':')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, ';')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '<')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '>')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, ',')] = -1;
 
         //transições de q2
         matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, 'a')] = -1;
@@ -175,6 +277,39 @@ public class ImageVerifier {
         matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, 'z')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '=')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '"')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '/')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '.')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '0')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '1')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '2')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '3')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '4')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '5')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '6')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '7')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '8')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '9')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '!')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '@')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '#')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '$')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '%')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '¨')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '&')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '*')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '(')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, ')')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '_')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '-')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '{')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '}')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '[')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, ']')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, ':')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, ';')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '<')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '>')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, ',')] = -1;
 
         //transições de q3
         matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, 'a')] = -1;
@@ -205,6 +340,39 @@ public class ImageVerifier {
         matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, 'z')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '=')] = ArrayAdapter.get_string_ref(estados, "q4");
         matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '"')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '/')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '.')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '0')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '1')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '2')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '3')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '4')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '5')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '6')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '7')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '8')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '9')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '!')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '@')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '#')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '$')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '%')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '¨')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '&')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '*')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '(')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, ')')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '_')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '-')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '{')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '}')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '[')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, ']')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, ':')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, ';')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '<')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '>')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, ',')] = -1;
 
         //transições de q4
         matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, 'a')] = -1;
@@ -235,6 +403,39 @@ public class ImageVerifier {
         matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, 'z')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '=')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '"')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '/')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '.')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '0')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '1')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '2')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '3')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '4')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '5')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '6')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '7')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '8')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '9')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '!')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '@')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '#')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '$')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '%')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '¨')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '&')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '*')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '(')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, ')')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '_')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '-')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '{')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '}')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '[')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, ']')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, ':')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, ';')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '<')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '>')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, ',')] = -1;
 
         //transições de q5
         matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, 'a')] = ArrayAdapter.get_string_ref(estados, "q5");
@@ -265,6 +466,39 @@ public class ImageVerifier {
         matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, 'z')] = ArrayAdapter.get_string_ref(estados, "q5");
         matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '=')] = ArrayAdapter.get_string_ref(estados, "q5");
         matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '"')] = ArrayAdapter.get_string_ref(estados, "q6");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '/')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '.')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '0')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '1')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '2')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '3')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '4')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '5')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '6')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '7')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '8')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '9')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '!')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '@')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '#')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '$')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '%')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '¨')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '&')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '*')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '(')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, ')')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '_')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '-')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '{')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '}')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '[')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, ']')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, ':')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, ';')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '<')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '>')] = ArrayAdapter.get_string_ref(estados, "q5");
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, ',')] = ArrayAdapter.get_string_ref(estados, "q5");
 
         //transições de q6
         matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, 'a')] = -1;
@@ -295,6 +529,40 @@ public class ImageVerifier {
         matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, 'z')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '=')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '"')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '/')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '.')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '0')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '1')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '2')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '3')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '4')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '5')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '6')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '7')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '8')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '9')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '!')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '@')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '#')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '$')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '%')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '¨')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '&')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '*')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '(')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, ')')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '_')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '-')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '{')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '}')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '[')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, ']')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, ':')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, ';')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '<')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '>')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, ',')] = -1;
+        
         
         int estado = ArrayAdapter.get_string_ref (estados, estado_inicial);
         int estado_anterior = -1;
