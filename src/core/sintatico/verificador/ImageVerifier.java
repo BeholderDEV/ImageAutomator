@@ -6,8 +6,8 @@
 package core.sintatico.verificador;
 
 import core.util.ArrayAdapter;
-import core.web.ResourcesGetter;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class ImageVerifier {
     
     //retorna o próximo estado, dado o estado atual e o símbolo lido
-    public static int proximo_estado(char[] alfabeto, int[][] matriz,int estado_atual,char simbolo){
+    public int proximo_estado(char[] alfabeto, int[][] matriz,int estado_atual,char simbolo){
         int simbol_indice = ArrayAdapter.get_char_ref(alfabeto, simbolo);
         if (simbol_indice != -1){
             return matriz[estado_atual][simbol_indice];
@@ -25,20 +25,7 @@ public class ImageVerifier {
         }
     }
 
-    /*
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        //instancia e usa objeto que captura código-fonte de páginas Web
-        ResourcesGetter crw = new ResourcesGetter();
-        crw.getListaRecursos().add("http://lite.acad.univali.br/temideianarede");
-        ArrayList<String> listaCodigos = crw.carregarRecursos();
-
-        String codigoHTML = listaCodigos.get(0).trim();
-
-        
-
-
+    public List<String> getSources(String codigoHTML){
         //mapa de estados
         String[] estados = new String[7];
         estados[0] = "q0";
@@ -595,16 +582,12 @@ public class ImageVerifier {
                 
             }else{
                 //se houver transição válida, adiciona caracter a palavra
+                if(estado==5 && estado_anterior==5){
                 palavra += codigoHTML.charAt(i);
+                }
             }
         }
 
-
-        //foreach no Java para exibir todas as palavras reconhecidas
-        for (String p: palavras_reconhecidas){
-            System.out.println (p);
-        }
-
-
+        return palavras_reconhecidas;
     }
 }
