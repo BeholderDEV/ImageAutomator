@@ -7,6 +7,7 @@ package ui;
 
 import core.sintatico.verificador.ImageVerifier;
 import core.web.ResourcesGetter;
+import core.web.URLGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -94,16 +95,21 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        String siteURL = jTextField1.getText();
         ResourcesGetter crw = new ResourcesGetter();
-        crw.getListaRecursos().add(jTextField1.getText());
+        crw.getListaRecursos().add(siteURL);
         ArrayList<String> listaCodigos = crw.carregarRecursos();
 
         String codigoHTML = listaCodigos.get(0);
         ImageVerifier verifier = new ImageVerifier();
         List<String> resources = verifier.getSources(codigoHTML);
+        
+        URLGenerator generator = new URLGenerator(siteURL);
+        
         DefaultListModel<String> model = new DefaultListModel<>();
         for (String resource : resources) {
-            model.addElement(resource);
+            model.addElement(generator.generate(resource));
         }
         jList1.setModel(model);
     }//GEN-LAST:event_jButton1ActionPerformed
