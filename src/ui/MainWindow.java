@@ -5,11 +5,12 @@
  */
 package ui;
 
+import core.ListFiller;
 import core.sintatico.verificador.ImageVerifier;
 import core.image.FileTransfer;
 import core.image.ImageEditor;
-import core.image.ImageLink;
-import core.image.ImageLinkRenderer;
+import core.image.swing.ImageLink;
+import core.image.swing.ImageLinkRenderer;
 import core.web.ResourcesGetter;
 import core.web.URLGenerator;
 import java.awt.Image;
@@ -23,12 +24,15 @@ import javax.swing.DefaultListModel;
  * @author 5663296
  */
 public class MainWindow extends javax.swing.JFrame {
+    
+    ListFiller filler;
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
         initComponents();
         jList1.setCellRenderer(new ImageLinkRenderer());
+        filler = new ListFiller(jList1);
     }
 
     /**
@@ -96,27 +100,8 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
         String siteURL = jTextField1.getText();
-        ResourcesGetter crw = new ResourcesGetter();
-        crw.getListaRecursos().add(siteURL);
-        ArrayList<String> listaCodigos = crw.carregarRecursos();
-
-        String codigoHTML = listaCodigos.get(0);
-        ImageVerifier verifier = new ImageVerifier();
-        List<String> resources = verifier.getSources(codigoHTML);
-        
-        URLGenerator generator = new URLGenerator(siteURL);
-        
-        DefaultListModel<ImageLink> model = new DefaultListModel<>();
-        for (String resource : resources) {
-            String url = generator.generate(resource);
-            BufferedImage image = FileTransfer.downloadImage(url);
-            image = ImageEditor.resizeImage(image, 64);
-            ImageLink imageLink = new ImageLink(url, image);
-            model.addElement(imageLink);
-        }
-        jList1.setModel(model);
+        filler.fillList(siteURL);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
