@@ -33,9 +33,8 @@ public class ImageLinkRenderer extends DefaultListCellRenderer{
     @Override
     public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         JLabel component = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus); //To change body of generated methods, choose Tools | Templates.
-        
         ImageLink imageLink = (ImageLink) value;
-        component.setIcon(new ImageIcon(imageLink.image));
+        component.setIcon(new ImageIcon(imageLink.imageLoader.getImage()));
         component.setBorder(new EmptyBorder(4,4,4,4));
         
         return component;

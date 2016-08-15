@@ -5,6 +5,7 @@
  */
 package core.image.swing;
 
+import core.image.ImageLoader;
 import java.awt.Image;
 
 /**
@@ -13,13 +14,12 @@ import java.awt.Image;
  */
 public class ImageLink {
     String url;
-    Image image;
+    ImageLoader imageLoader;
     String nome;
 
-    public ImageLink(String url, Image image) {
+    public ImageLink(String url) {
         this.url = url;
-        this.image = image;
-        
+        this.imageLoader = new ImageLoader(url, 64);
         String[] parts = url.split("/");
         String nome = parts[parts.length-1];
         this.nome = nome;

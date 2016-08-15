@@ -43,9 +43,7 @@ public class ListFiller {
         DefaultListModel<ImageLink> model = new DefaultListModel<>();
         resources.stream().forEach((resource) -> {
                 String url = generator.generate(resource);
-                BufferedImage image = FileTransfer.downloadImage(url);
-                image = ImageEditor.resizeImage(image, 64);
-                ImageLink imageLink = new ImageLink(url, image);
+                ImageLink imageLink = new ImageLink(url);
                 model.addElement(imageLink);
         });
         jList.setModel(model);
