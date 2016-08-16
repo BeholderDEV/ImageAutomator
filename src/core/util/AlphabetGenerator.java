@@ -17,8 +17,7 @@ public class AlphabetGenerator {
         
     }
     
-    public static String generateAlphabet(){
-        
+    public static String generateAlphabet(){    
         String arrays="";
         for(int i=0; i<alphabet.length();i++){
             String line = "alfabeto["+i+"] = '"+alphabet.charAt(i)+"';\n";
@@ -26,6 +25,7 @@ public class AlphabetGenerator {
         }
         return arrays;
     }
+    
     public static String generateMatrix(String estado, int indexTroca, String proximoEstado){
         
         String arrays="";
