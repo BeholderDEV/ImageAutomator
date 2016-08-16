@@ -6,6 +6,7 @@
 package ui;
 
 import com.alee.laf.WebLookAndFeel;
+import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -114,8 +115,8 @@ public class MainWindow extends javax.swing.JFrame {
         WeblafUtils.configuraWeblaf(jPanel2);
         WeblafUtils.configuraWebLaf(textURL);
         WeblafUtils.configurarBotao(webButton1, ColorController.COR_DESTAQUE, ColorController.COR_LETRA);
-        WeblafUtils.configurarBotao(webButton2, ColorController.PROGRESS_BAR, ColorController.COR_LETRA, 5);
-        WeblafUtils.configurarBotao(webButton3, ColorController.PROGRESS_BAR, ColorController.COR_LETRA, 5);
+        WeblafUtils.configurarBotao(webButton2, ColorController.COR_PRINCIPAL, ColorController.COR_LETRA,ColorController.PROGRESS_BAR, Color.orange, 5);
+        WeblafUtils.configurarBotao(webButton3, ColorController.COR_PRINCIPAL, ColorController.COR_LETRA,ColorController.FUNDO_CLARO, Color.orange, 5);
         jPanel2.setBackground(ColorController.COR_PRINCIPAL);
         jPanel3.setBackground(ColorController.COR_PRINCIPAL);
         jScrollPane2.setBackground(ColorController.COR_DESTAQUE);
@@ -162,7 +163,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel4.setOpaque(false);
         jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 0));
 
-        webButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/resources/window_close.png"))); // NOI18N
+        webButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/resources/window_min.png"))); // NOI18N
         webButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 webButton3ActionPerformed(evt);
