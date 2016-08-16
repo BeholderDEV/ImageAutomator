@@ -36,7 +36,6 @@ public class FileTransfer {
         if(!path.contains(type)){
             path=path.concat("."+type);
         }
-        System.out.println(path);
         File outputfile = new File(path);
         ImageIO.write(image, type, outputfile);
     }

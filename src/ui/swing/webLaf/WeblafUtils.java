@@ -187,6 +187,7 @@ public  static void configurarToogleBotao(WebToggleButton botao, Color corBgPrin
         
         botao.setMargin (margin);
 //        botao.setFontSize ( 20 );
+        botao.setBorder(null);
         botao.setRound ( 0 );
         botao.setShadeWidth ( 0 );
         botao.setInnerShadeWidth ( 0 );

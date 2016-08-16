@@ -39,9 +39,9 @@ public class MainWindow extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         imageList.setCellRenderer(new ImageLinkRenderer());
         filler = new ListFiller(imageList, this);
-        configureTheme();
         this.getRootPane().setDefaultButton(webButton1); // Automatic makes button respond to enter key 
-        
+        configureTheme();
+
         imageList.addMouseListener(new MouseAdapter()
         {
           @Override
