@@ -6,6 +6,8 @@
 package ui;
 
 import com.alee.laf.WebLookAndFeel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -44,21 +46,32 @@ public class MainWindow extends javax.swing.JFrame {
           public void mouseClicked(MouseEvent event)
           {
               if(event.getClickCount()==2){
-                String url = ((ImageLink) imageList.getSelectedValue()).getUrl();
-                
-                JFileChooser chooser = new JFileChooser();
-                chooser.setCurrentDirectory(new File("/home/me/Documents"));
-                int retrival = chooser.showSaveDialog(null);
-                if (retrival == JFileChooser.APPROVE_OPTION) {
-                    try {
-                        FileTransfer.saveFile(chooser.getSelectedFile()+url.substring(url.length()-4), FileTransfer.downloadImage(url));
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                }
+                downloadSelectedItem();
               }
           }
         });
+        imageList.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode()==KeyEvent.VK_ENTER){
+                    downloadSelectedItem();
+                }
+            }
+        });
+    }
+    
+    private void downloadSelectedItem(){
+        String url = ((ImageLink) imageList.getSelectedValue()).getUrl();
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new File("/home/me/Documents"));
+        int retrival = chooser.showSaveDialog(null);
+        if (retrival == JFileChooser.APPROVE_OPTION) {
+            try {
+                FileTransfer.saveFile(chooser.getSelectedFile()+url.substring(url.length()-4), FileTransfer.downloadImage(url));
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
     }
     
     private void configureTheme(){
