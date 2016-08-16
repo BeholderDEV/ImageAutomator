@@ -86,10 +86,13 @@ public class MainWindow extends javax.swing.JFrame {
     private void configureTheme(){
         WeblafUtils.instalaWeblaf();
         WeblafUtils.configuraWebLaf(jScrollPane2);
+        
         WeblafUtils.configuraWeblaf(jPanel2);
         WeblafUtils.configuraWebLaf(textURL);
         WeblafUtils.configurarBotao(webButton1, ColorController.COR_DESTAQUE, ColorController.COR_LETRA);
+        WeblafUtils.configurarBotao(webButton2, ColorController.PROGRESS_BAR, ColorController.COR_LETRA, 5);
         jPanel2.setBackground(ColorController.COR_PRINCIPAL);
+        jPanel3.setBackground(ColorController.COR_PRINCIPAL);
         jScrollPane2.setBackground(ColorController.COR_DESTAQUE);
         jScrollPane2.setCorner(JScrollPane.LOWER_RIGHT_CORNER, null);
         imageList.setBackground(ColorController.COR_DESTAQUE);
@@ -104,29 +107,48 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
+        labelURl = new javax.swing.JLabel();
+        webButton2 = new com.alee.laf.button.WebButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        labelURl = new javax.swing.JLabel();
         textURL = new javax.swing.JTextField();
         webButton1 = new com.alee.laf.button.WebButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        imageList = new javax.swing.JList<ImageLink>();
+        imageList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Image Searcher");
+        setUndecorated(true);
+        setResizable(false);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        jPanel3.setPreferredSize(new java.awt.Dimension(45, 45));
+        jPanel3.setLayout(new java.awt.BorderLayout());
+
+        labelURl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelURl.setForeground(new java.awt.Color(250, 250, 250));
+        labelURl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelURl.setText("Image Automator");
+        jPanel3.add(labelURl, java.awt.BorderLayout.CENTER);
+
+        webButton2.setText("x");
+        webButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                webButton2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(webButton2, java.awt.BorderLayout.EAST);
+
+        getContentPane().add(jPanel3, java.awt.BorderLayout.NORTH);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         jPanel2.setMinimumSize(new java.awt.Dimension(640, 480));
         jPanel2.setPreferredSize(new java.awt.Dimension(640, 480));
         jPanel2.setLayout(new java.awt.BorderLayout(20, 20));
 
         jPanel1.setOpaque(false);
         jPanel1.setLayout(new java.awt.BorderLayout(20, 10));
-
-        labelURl.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        labelURl.setForeground(new java.awt.Color(250, 250, 250));
-        labelURl.setText("Image Automator");
-        jPanel1.add(labelURl, java.awt.BorderLayout.NORTH);
 
         textURL.setText("http://lite.acad.univali.br/temideianarede/");
         textURL.setBorder(null);
@@ -158,6 +180,10 @@ public class MainWindow extends javax.swing.JFrame {
         filler.fillList(siteURL);
     }//GEN-LAST:event_webButton1ActionPerformed
 
+    private void webButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webButton2ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_webButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -180,9 +206,11 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JList<ImageLink> imageList;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelURl;
     private javax.swing.JTextField textURL;
     private com.alee.laf.button.WebButton webButton1;
+    private com.alee.laf.button.WebButton webButton2;
     // End of variables declaration//GEN-END:variables
 }
