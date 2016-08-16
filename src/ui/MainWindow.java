@@ -80,7 +80,7 @@ public class MainWindow extends javax.swing.JFrame {
         textURL.setText("http://lite.acad.univali.br/temideianarede/");
         jPanel1.add(textURL, java.awt.BorderLayout.CENTER);
 
-        webButton1.setText("webButton1");
+        webButton1.setText("Find Images");
         webButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 webButton1ActionPerformed(evt);

@@ -5,13 +5,10 @@
  */
 package ui;
 
-import ui.image.FileTransfer;
-import ui.image.ImageEditor;
 import ui.swing.ImageLink;
 import core.sintatico.verificador.ImageVerifier;
 import core.web.ResourcesGetter;
 import core.web.URLGenerator;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -38,21 +35,23 @@ public class ListFiller {
     public void fillList(String siteURL){
         ResourcesGetter crw = new ResourcesGetter();
         crw.getListaRecursos().add(siteURL);
-        ArrayList<String> listaCodigos = crw.carregarRecursos();
-
-        String codigoHTML = listaCodigos.get(0);
-        ImageVerifier verifier = new ImageVerifier();
-        List<String> resources = verifier.getSources(codigoHTML);
         
-        URLGenerator generator = new URLGenerator(siteURL);
-        
-        DefaultListModel<ImageLink> model = new DefaultListModel<>();
-        resources.stream().forEach((resource) -> {
-                String url = generator.generate(resource);
-                ImageLink imageLink = new ImageLink(url);
-                model.addElement(imageLink);
+        Thread t = new Thread(() -> {
+            ArrayList<String> listaCodigos = crw.carregarRecursos();
+            String codigoHTML = listaCodigos.get(0);
+            ImageVerifier verifier = new ImageVerifier();
+            List<String> resources = verifier.getSources(codigoHTML);
+            URLGenerator generator = new URLGenerator(siteURL);
+            DefaultListModel<ImageLink> model = new DefaultListModel<>();
+            resources.stream().forEach((resource) -> {
+                    String url = generator.generate(resource);
+                    ImageLink imageLink = new ImageLink(url);
+                    model.addElement(imageLink);
+            });
+            jList.setModel(model);
         });
-        jList.setModel(model);
+        t.start();
+        
         
     }
 }
