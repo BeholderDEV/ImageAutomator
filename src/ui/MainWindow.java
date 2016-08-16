@@ -29,6 +29,10 @@ public class MainWindow extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         imageList.setCellRenderer(new ImageLinkRenderer());
         filler = new ListFiller(imageList, this);
+        configureTheme();
+    }
+    
+    private void configureTheme(){
         WeblafUtils.instalaWeblaf();
         WeblafUtils.configuraWebLaf(jScrollPane2);
         WeblafUtils.configuraWeblaf(jPanel2);
@@ -38,9 +42,8 @@ public class MainWindow extends javax.swing.JFrame {
         textURL.setForeground(ColorController.COR_LETRA);
         jScrollPane2.setBackground(ColorController.COR_DESTAQUE);
         imageList.setBackground(ColorController.COR_DESTAQUE);
-        
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
