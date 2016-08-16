@@ -10,11 +10,13 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.UnsupportedLookAndFeelException;
 import ui.image.FileTransfer;
@@ -29,6 +31,7 @@ import ui.swing.webLaf.WeblafUtils;
  */
 public class MainWindow extends javax.swing.JFrame {
     ListFiller filler;
+    int pX, pY;
     /**
      * Creates new form MainWindow
      */
@@ -47,6 +50,28 @@ public class MainWindow extends javax.swing.JFrame {
                 }
             }
         });
+        
+        jPanel3.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent me) {
+                // Get x,y and store them
+                pX = me.getX();
+                pY = me.getY();
+
+            }
+
+             public void mouseDragged(MouseEvent me) {
+
+                MainWindow.this.setLocation(MainWindow.this.getLocation().x + me.getX() - pX, MainWindow.this.getLocation().y + me.getY() - pY);
+            }
+        });
+
+        jPanel3.addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseDragged(MouseEvent me) {
+
+                MainWindow.this.setLocation(MainWindow.this.getLocation().x + me.getX() - pX, MainWindow.this.getLocation().y + me.getY() - pY);
+            }
+        });
+        
         
         imageList.addMouseListener(new MouseAdapter()
         {
@@ -86,11 +111,11 @@ public class MainWindow extends javax.swing.JFrame {
     private void configureTheme(){
         WeblafUtils.instalaWeblaf();
         WeblafUtils.configuraWebLaf(jScrollPane2);
-        
         WeblafUtils.configuraWeblaf(jPanel2);
         WeblafUtils.configuraWebLaf(textURL);
         WeblafUtils.configurarBotao(webButton1, ColorController.COR_DESTAQUE, ColorController.COR_LETRA);
         WeblafUtils.configurarBotao(webButton2, ColorController.PROGRESS_BAR, ColorController.COR_LETRA, 5);
+        WeblafUtils.configurarBotao(webButton3, ColorController.PROGRESS_BAR, ColorController.COR_LETRA, 5);
         jPanel2.setBackground(ColorController.COR_PRINCIPAL);
         jPanel3.setBackground(ColorController.COR_PRINCIPAL);
         jScrollPane2.setBackground(ColorController.COR_DESTAQUE);
@@ -109,6 +134,8 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel3 = new javax.swing.JPanel();
         labelURl = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        webButton3 = new com.alee.laf.button.WebButton();
         webButton2 = new com.alee.laf.button.WebButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -122,7 +149,7 @@ public class MainWindow extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 5));
         jPanel3.setPreferredSize(new java.awt.Dimension(45, 45));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
@@ -132,13 +159,26 @@ public class MainWindow extends javax.swing.JFrame {
         labelURl.setText("Image Automator");
         jPanel3.add(labelURl, java.awt.BorderLayout.CENTER);
 
-        webButton2.setText("x");
+        jPanel4.setOpaque(false);
+        jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 0));
+
+        webButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/resources/window_close.png"))); // NOI18N
+        webButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                webButton3ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(webButton3);
+
+        webButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/resources/window_close.png"))); // NOI18N
         webButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 webButton2ActionPerformed(evt);
             }
         });
-        jPanel3.add(webButton2, java.awt.BorderLayout.EAST);
+        jPanel4.add(webButton2);
+
+        jPanel3.add(jPanel4, java.awt.BorderLayout.EAST);
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.NORTH);
 
@@ -184,6 +224,10 @@ public class MainWindow extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_webButton2ActionPerformed
 
+    private void webButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webButton3ActionPerformed
+        setExtendedState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_webButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -207,10 +251,12 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelURl;
     private javax.swing.JTextField textURL;
     private com.alee.laf.button.WebButton webButton1;
     private com.alee.laf.button.WebButton webButton2;
+    private com.alee.laf.button.WebButton webButton3;
     // End of variables declaration//GEN-END:variables
 }
