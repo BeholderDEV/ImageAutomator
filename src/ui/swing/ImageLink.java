@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package core.image.swing;
+package ui.swing;
 
-import core.image.ImageLoader;
+import ui.image.ImageLoader;
 import java.awt.Image;
 
 /**

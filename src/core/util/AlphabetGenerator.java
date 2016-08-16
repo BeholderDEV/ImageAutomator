@@ -54,29 +54,30 @@ public class AlphabetGenerator {
     }
     
     public static void main(String[] args) {
-        String site = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z";
-        leters = site.toLowerCase().replace(" ", "");
+        String alphabetLetters = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z";
+        leters = alphabetLetters.replace(" ", "");
+        leters = leters.concat(alphabetLetters.toLowerCase().replace(" ", ""));
         alphabet = leters.concat("=\"/.0123456789!@#$%¨&*()_-{}[]:;<>,");
         System.out.println(generateAlphabet());
         System.out.println("\n\n--------------\n\n");
         
         System.out.println("//transições de q0");
-        System.out.println(generateMatrix("q0", 18, "q1"));
+        System.out.println(generateMatrix("q0", 44, "q1"));
         
         System.out.println("//transições de q1");
-        System.out.println(generateMatrix("q1", 17, "q2"));
+        System.out.println(generateMatrix("q1", 43, "q2"));
         
         System.out.println("//transições de q2");
-        System.out.println(generateMatrix("q2", 2, "q3"));
+        System.out.println(generateMatrix("q2", 28, "q3"));
         
         System.out.println("//transições de q3");
-        System.out.println(generateMatrix("q3", 26, "q4"));
+        System.out.println(generateMatrix("q3", 52, "q4"));
         
         System.out.println("//transições de q4");
-        System.out.println(generateMatrix("q4", 27, "q5"));
+        System.out.println(generateMatrix("q4", 53, "q5"));
         
         System.out.println("//transições de q5");
-        System.out.println(generateLoopMatrix("q5", 27, "q5"));
+        System.out.println(generateLoopMatrix("q5", 53, "q5"));
         
         System.out.println("//transições de q6");
         System.out.println(generateMatrix("q6", 100, "q5"));

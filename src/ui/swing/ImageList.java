@@ -3,15 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package core;
+package ui.swing;
 
-import core.image.FileTransfer;
-import core.image.ImageEditor;
-import core.image.swing.ImageLink;
 import core.sintatico.verificador.ImageVerifier;
 import core.web.ResourcesGetter;
 import core.web.URLGenerator;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -21,15 +17,13 @@ import javax.swing.JList;
  *
  * @author lite
  */
-public class ListFiller {
-    String siteUrl;
-    JList<ImageLink> jList;
-
-    public ListFiller(JList<ImageLink> jList) {
-        this.jList = jList;
+public class ImageList extends JList<ImageLink>{
+    
+    public ImageList() {
+        setCellRenderer(new ImageLinkRenderer());
     }
     
-    public void fillList(String siteURL){
+    public void fill(String siteURL){
         ResourcesGetter crw = new ResourcesGetter();
         crw.getListaRecursos().add(siteURL);
         ArrayList<String> listaCodigos = crw.carregarRecursos();
@@ -46,7 +40,7 @@ public class ListFiller {
                 ImageLink imageLink = new ImageLink(url);
                 model.addElement(imageLink);
         });
-        jList.setModel(model);
+        this.setModel(model);
         
     }
 }

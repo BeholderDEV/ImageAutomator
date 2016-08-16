@@ -5,26 +5,16 @@
  */
 package ui;
 
-import core.ListFiller;
-import core.sintatico.verificador.ImageVerifier;
-import core.image.FileTransfer;
-import core.image.ImageEditor;
-import core.image.swing.ImageLink;
-import core.image.swing.ImageLinkRenderer;
-import core.web.ResourcesGetter;
-import core.web.URLGenerator;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
+import ui.swing.ImageLink;
+import ui.swing.ImageLinkRenderer;
 
 /**
  *
  * @author 5663296
  */
 public class MainWindow extends javax.swing.JFrame {
-    
     ListFiller filler;
     /**
      * Creates new form MainWindow
@@ -72,14 +62,14 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -101,7 +91,10 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String siteURL = jTextField1.getText();
+        DefaultListModel<ImageLink> model = new DefaultListModel<>();
+        jList1.setModel(model);
         filler.fillList(siteURL);
+//        filler.fillList(siteURL);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

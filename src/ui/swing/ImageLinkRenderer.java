@@ -3,21 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package core.image.swing;
+package ui.swing;
 
 import java.awt.Component;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.scene.effect.Effect;
-import javax.imageio.ImageIO;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -35,8 +27,6 @@ public class ImageLinkRenderer extends DefaultListCellRenderer{
         JLabel component = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus); //To change body of generated methods, choose Tools | Templates.
         ImageLink imageLink = (ImageLink) value;
         component.setIcon(new ImageIcon(imageLink.imageLoader.getImage()));
-        component.setBorder(new EmptyBorder(4,4,4,4));
-        
         return component;
     }
     
