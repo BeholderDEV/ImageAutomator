@@ -5,10 +5,11 @@
  */
 package ui.image;
 
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import javax.imageio.ImageIO;
@@ -30,7 +31,9 @@ public class FileTransfer {
         return image;
     }
     
-    public static void saveFile(String urlPath, Image image){
-               
+    public static void saveFile(String urlPath, BufferedImage image) throws IOException{
+        
+        File outputfile = new File(urlPath);
+        ImageIO.write(image, urlPath.substring(urlPath.length()-3), outputfile);
     }
 }

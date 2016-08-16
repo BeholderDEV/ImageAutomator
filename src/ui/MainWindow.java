@@ -6,13 +6,17 @@
 package ui;
 
 import com.alee.laf.WebLookAndFeel;
-import com.alee.utils.LafUtils;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import javax.swing.LookAndFeel;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+import ui.image.FileTransfer;
 import ui.swing.ColorController;
 import ui.swing.ImageLink;
 import ui.swing.ImageLinkRenderer;
@@ -33,6 +37,28 @@ public class MainWindow extends javax.swing.JFrame {
         imageList.setCellRenderer(new ImageLinkRenderer());
         filler = new ListFiller(imageList, this);
         configureTheme();
+        
+        imageList.addMouseListener(new MouseAdapter()
+        {
+          @Override
+          public void mouseClicked(MouseEvent event)
+          {
+              if(event.getClickCount()==2){
+                String url = ((ImageLink) imageList.getSelectedValue()).getUrl();
+                
+                JFileChooser chooser = new JFileChooser();
+                chooser.setCurrentDirectory(new File("/home/me/Documents"));
+                int retrival = chooser.showSaveDialog(null);
+                if (retrival == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        FileTransfer.saveFile(chooser.getSelectedFile()+url.substring(url.length()-4), FileTransfer.downloadImage(url));
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+              }
+          }
+        });
     }
     
     private void configureTheme(){

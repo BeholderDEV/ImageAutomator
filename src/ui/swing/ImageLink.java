@@ -29,6 +29,18 @@ public class ImageLink {
     public String toString() {
         return nome;
     }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public ImageLoader getImageLoader() {
+        return imageLoader;
+    }
+
+    public String getNome() {
+        return nome;
+    }
     
     
 }
