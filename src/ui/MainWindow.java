@@ -11,12 +11,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.io.FileWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.UnsupportedLookAndFeelException;
 import ui.image.FileTransfer;
@@ -39,9 +37,17 @@ public class MainWindow extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         imageList.setCellRenderer(new ImageLinkRenderer());
         filler = new ListFiller(imageList, this);
-        this.getRootPane().setDefaultButton(webButton1); // Automatic makes button respond to enter key 
         configureTheme();
-
+        
+        textURL.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode()==KeyEvent.VK_ENTER){
+                    webButton1.doClick();
+                }
+            }
+        });
+        
         imageList.addMouseListener(new MouseAdapter()
         {
           @Override
