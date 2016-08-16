@@ -49,6 +49,7 @@ public class ListFiller {
                     model.addElement(imageLink);
             });
             jList.setModel(model);
+            jList.requestFocus();
         });
         t.start();
         

@@ -6,7 +6,6 @@
 package ui.swing;
 
 import ui.image.ImageLoader;
-import java.awt.Image;
 
 /**
  *
