@@ -65,10 +65,11 @@ public class MainWindow extends javax.swing.JFrame {
         String url = ((ImageLink) imageList.getSelectedValue()).getUrl();
         JFileChooser chooser = new JFileChooser();
         chooser.setCurrentDirectory(new File("/home/me/Documents"));
+        chooser.setSelectedFile(new File(((ImageLink) imageList.getSelectedValue()).getNome()));
         int retrival = chooser.showSaveDialog(null);
         if (retrival == JFileChooser.APPROVE_OPTION) {
             try {
-                FileTransfer.saveFile(chooser.getSelectedFile()+url.substring(url.length()-4), FileTransfer.downloadImage(url));
+                FileTransfer.saveFile(chooser.getSelectedFile().toString(), url.substring(url.length()-3), FileTransfer.downloadImage(url));
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

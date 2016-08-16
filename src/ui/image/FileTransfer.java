@@ -31,9 +31,13 @@ public class FileTransfer {
         return image;
     }
     
-    public static void saveFile(String urlPath, BufferedImage image) throws IOException{
-        
-        File outputfile = new File(urlPath);
-        ImageIO.write(image, urlPath.substring(urlPath.length()-3), outputfile);
+    public static void saveFile(String urlPath, String type, BufferedImage image) throws IOException{
+        String path=urlPath;
+        if(!path.contains(type)){
+            path=path.concat("."+type);
+        }
+        System.out.println(path);
+        File outputfile = new File(path);
+        ImageIO.write(image, type, outputfile);
     }
 }
