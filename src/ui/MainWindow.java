@@ -23,7 +23,7 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         imageList.setCellRenderer(new ImageLinkRenderer());
-        filler = new ListFiller(imageList);
+        filler = new ListFiller(imageList, this);
     }
 
     /**

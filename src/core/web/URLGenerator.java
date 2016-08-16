@@ -22,10 +22,8 @@ public class URLGenerator {
     }
     
     public String generate(String path){
-        System.out.println(path);
         path = path.substring(2);
         path = path.substring(0, path.length()-1);
-        System.out.println(path);
         if(path.startsWith("http")){
             return path;
         }

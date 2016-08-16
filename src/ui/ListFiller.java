@@ -24,9 +24,15 @@ import javax.swing.JList;
 public class ListFiller {
     String siteUrl;
     JList<ImageLink> jList;
-
-    public ListFiller(JList<ImageLink> jList) {
+    static MainWindow  mainWindow;
+    
+    public ListFiller(JList<ImageLink> jList, MainWindow mainWindow) {
         this.jList = jList;
+        this.mainWindow = mainWindow;
+    }
+    
+    public static void updateWindow(){
+        mainWindow.repaint();
     }
     
     public void fillList(String siteURL){

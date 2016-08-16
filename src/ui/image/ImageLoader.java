@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import ui.ListFiller;
 
 /**
  *
@@ -45,6 +46,7 @@ public class ImageLoader{
             } catch (Exception e) {
                 setImage(ImageEditor.resizeImage(backupImage, 64));
             }
+            ListFiller.updateWindow();
         });
         t.start();
     }
