@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.UnsupportedLookAndFeelException;
 import ui.image.FileTransfer;
 import ui.swing.ColorController;
@@ -82,6 +83,7 @@ public class MainWindow extends javax.swing.JFrame {
         WeblafUtils.configurarBotao(webButton1, ColorController.COR_DESTAQUE, ColorController.COR_LETRA);
         jPanel2.setBackground(ColorController.COR_PRINCIPAL);
         jScrollPane2.setBackground(ColorController.COR_DESTAQUE);
+        jScrollPane2.setCorner(JScrollPane.LOWER_RIGHT_CORNER, null);
         imageList.setBackground(ColorController.COR_DESTAQUE);
     }
     
