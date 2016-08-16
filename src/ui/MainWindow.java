@@ -96,7 +96,6 @@ public class MainWindow extends javax.swing.JFrame {
         DefaultListModel<ImageLink> model = new DefaultListModel<>();
         imageList.setModel(model);
         filler.fillList(siteURL);
-//        filler.fillList(siteURL);
     }//GEN-LAST:event_buttonGetURLActionPerformed
 
     /**
