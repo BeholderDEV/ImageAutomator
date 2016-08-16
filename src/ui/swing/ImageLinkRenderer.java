@@ -10,6 +10,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -18,15 +19,25 @@ import javax.swing.JList;
 public class ImageLinkRenderer extends DefaultListCellRenderer{
 
     public ImageLinkRenderer() {
+        setBorder(new EmptyBorder(5, 5, 5, 5));
+        setForeground(ColorController.COR_LETRA);
     }
 
     
     
     @Override
     public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-        JLabel component = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus); //To change body of generated methods, choose Tools | Templates.
+        JLabel component = (JLabel) this;
         ImageLink imageLink = (ImageLink) value;
         component.setIcon(new ImageIcon(imageLink.imageLoader.getImage()));
+        component.setText(imageLink.nome);
+        if(isSelected){
+            setOpaque(true);
+            setBackground(ColorController.FUNDO_ESCURO);
+        }
+        else{
+            setOpaque(false);
+        }
         return component;
     }
     

@@ -219,7 +219,6 @@ public class ImageVerifier {
                 palavra += codigoHTML.charAt(i);
             }
         }
-        System.out.println(palavras_reconhecidas);
         return palavras_reconhecidas;
 
     }
