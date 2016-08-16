@@ -6,10 +6,13 @@
 package ui;
 
 import com.alee.laf.WebLookAndFeel;
+import com.alee.utils.LafUtils;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.LookAndFeel;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import ui.swing.ColorController;
 import ui.swing.ImageLink;
 import ui.swing.ImageLinkRenderer;
@@ -36,10 +39,9 @@ public class MainWindow extends javax.swing.JFrame {
         WeblafUtils.instalaWeblaf();
         WeblafUtils.configuraWebLaf(jScrollPane2);
         WeblafUtils.configuraWeblaf(jPanel2);
+        WeblafUtils.configuraWebLaf(textURL);
         WeblafUtils.configurarBotao(webButton1, ColorController.COR_DESTAQUE, ColorController.COR_LETRA);
         jPanel2.setBackground(ColorController.COR_PRINCIPAL);
-        textURL.setBackground(ColorController.COR_DESTAQUE);
-        textURL.setForeground(ColorController.COR_LETRA);
         jScrollPane2.setBackground(ColorController.COR_DESTAQUE);
         imageList.setBackground(ColorController.COR_DESTAQUE);
     }
@@ -59,7 +61,7 @@ public class MainWindow extends javax.swing.JFrame {
         textURL = new javax.swing.JTextField();
         webButton1 = new com.alee.laf.button.WebButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        imageList = new javax.swing.JList<>();
+        imageList = new javax.swing.JList<ImageLink>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Image Searcher");
@@ -78,6 +80,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel1.add(labelURl, java.awt.BorderLayout.NORTH);
 
         textURL.setText("http://lite.acad.univali.br/temideianarede/");
+        textURL.setBorder(null);
         jPanel1.add(textURL, java.awt.BorderLayout.CENTER);
 
         webButton1.setText("Find Images");

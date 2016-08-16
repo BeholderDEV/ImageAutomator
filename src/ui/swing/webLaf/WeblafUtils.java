@@ -8,6 +8,7 @@ import com.alee.laf.button.WebToggleButton;
 import com.alee.laf.panel.WebPanelUI;
 import com.alee.laf.scroll.WebScrollBarUI;
 import com.alee.laf.scroll.WebScrollPaneUI;
+import com.alee.laf.text.WebTextFieldUI;
 import com.alee.laf.toolbar.WebToolBarUI;
 import com.alee.managers.style.skin.web.WebDecorationPainter;
 import java.awt.Color;
@@ -52,6 +53,17 @@ public class WeblafUtils {
             }
         }
     }
+    
+     public static void configuraWebLaf(JTextField field) {
+        if (!WeblafUtils.weblafEstaInstalado()) {
+            return;
+        }
+        ((WebTextFieldUI) field.getUI()).setDrawBorder(false);
+        ((WebTextFieldUI) field.getUI()).setDrawBackground(true);
+        field.setOpaque(true);
+        field.setBackground(ColorController.COR_DESTAQUE);
+        field.setForeground(ColorController.COR_LETRA);
+     }
 
    
     public static void configuraWebLaf(JScrollPane scroll) {
