@@ -29,6 +29,7 @@ public class ResourcesGetter {
             try {
                 URL url = new URL(stringURL);
                 URLConnection connection = url.openConnection();
+                connection.addRequestProperty("User-Agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
                 BufferedReader in = new BufferedReader(
                         new InputStreamReader(
                         connection.getInputStream()));
