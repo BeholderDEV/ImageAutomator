@@ -21,15 +21,19 @@ public class ImageVerifier {
         if(estado_atual == 2 && simbolo != '.' && simbolo != '\"'){
             simbolo = 'L';
         }
-        if(estado_atual == 3 && simbolo != 'j' && simbolo != 'p'){
+        if(estado_atual == 3 && simbolo != 'j' && simbolo != 'p' && simbolo != '"'){
             simbolo = 'L';
         }
-        if(estado_atual == 4 && simbolo != 'p'){
+        if(estado_atual == 4 && simbolo != 'p' && simbolo != '"'){
             simbolo = 'L';
         }
-        if(estado_atual == 6 && simbolo != 'n'){
+        if(estado_atual == 5 && simbolo != 'g' && simbolo != '"'){
             simbolo = 'L';
         }
+        if(estado_atual == 6 && simbolo != 'n' && simbolo != '"'){
+            simbolo = 'L';
+        }
+
         
         int simbol_indice = ArrayAdapter.get_char_ref(alfabeto, simbolo);
         
@@ -53,7 +57,7 @@ public class ImageVerifier {
         alfabeto[7] = '=';
 
         //mapa de estados
-        String[] estados = new String[11];
+        String[] estados = new String[10];
         estados[0] = "q0";
         estados[1] = "q1";
         estados[2] = "q2";
@@ -64,7 +68,6 @@ public class ImageVerifier {
         estados[7] = "q7";
         estados[8] = "q8";
         estados[9] = "q9";
-        estados[10] = "q10";
         
         String estado_inicial = "q0";
 
@@ -73,7 +76,7 @@ public class ImageVerifier {
         estados_finais[0] = "q9";
 
         //tabela de transição de AFD para reconhecimento números de dois dígitos
-        int[][] matriz = new int[11][8];
+        int[][] matriz = new int[10][8];
         
         //transições de q0
         matriz[ArrayAdapter.get_string_ref(estados, "q0")][ArrayAdapter.get_char_ref(alfabeto, '"')] = -1;
@@ -96,7 +99,7 @@ public class ImageVerifier {
         matriz[ArrayAdapter.get_string_ref(estados, "q1")][ArrayAdapter.get_char_ref(alfabeto, '=')] = -1;
         
         //transições de q2
-        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '"')] = ArrayAdapter.get_string_ref(estados, "q10");
+        matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '"')] = ArrayAdapter.get_string_ref(estados, "q7");
         matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '.')] = ArrayAdapter.get_string_ref(estados, "q3");
         matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, 'j')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, 'p')] = -1;
@@ -106,7 +109,7 @@ public class ImageVerifier {
         matriz[ArrayAdapter.get_string_ref(estados, "q2")][ArrayAdapter.get_char_ref(alfabeto, '=')] = -1;
         
         //transições de q3
-        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '"')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '"')] = ArrayAdapter.get_string_ref(estados, "q7");
         matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '.')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, 'j')] = ArrayAdapter.get_string_ref(estados, "q4");
         matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, 'p')] = ArrayAdapter.get_string_ref(estados, "q6");
@@ -116,7 +119,7 @@ public class ImageVerifier {
         matriz[ArrayAdapter.get_string_ref(estados, "q3")][ArrayAdapter.get_char_ref(alfabeto, '=')] = -1;
         
         //transições de q4
-        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '"')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '"')] = ArrayAdapter.get_string_ref(estados, "q7");
         matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '.')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, 'j')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, 'p')] = ArrayAdapter.get_string_ref(estados, "q5");;
@@ -126,22 +129,22 @@ public class ImageVerifier {
         matriz[ArrayAdapter.get_string_ref(estados, "q4")][ArrayAdapter.get_char_ref(alfabeto, '=')] = -1;
         
         //transições de q5
-        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '"')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '"')] = ArrayAdapter.get_string_ref(estados, "q7");
         matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '.')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, 'j')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, 'p')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, 'g')] = ArrayAdapter.get_string_ref(estados, "q8");;
         matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, 'n')] = -1;
-        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, 'L')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, 'L')] = ArrayAdapter.get_string_ref(estados, "q2");
         matriz[ArrayAdapter.get_string_ref(estados, "q5")][ArrayAdapter.get_char_ref(alfabeto, '=')] = -1;
         
         //transições de q6
-        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '"')] = -1;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '"')] = ArrayAdapter.get_string_ref(estados, "q7");
         matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '.')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, 'j')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, 'p')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, 'g')] = -1;
-        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, 'n')] = ArrayAdapter.get_string_ref(estados, "q7");;
+        matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, 'n')] = ArrayAdapter.get_string_ref(estados, "q5");;
         matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, 'L')] = ArrayAdapter.get_string_ref(estados, "q2");;
         matriz[ArrayAdapter.get_string_ref(estados, "q6")][ArrayAdapter.get_char_ref(alfabeto, '=')] = -1;
         
@@ -150,7 +153,7 @@ public class ImageVerifier {
         matriz[ArrayAdapter.get_string_ref(estados, "q7")][ArrayAdapter.get_char_ref(alfabeto, '.')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q7")][ArrayAdapter.get_char_ref(alfabeto, 'j')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q7")][ArrayAdapter.get_char_ref(alfabeto, 'p')] = -1;
-        matriz[ArrayAdapter.get_string_ref(estados, "q7")][ArrayAdapter.get_char_ref(alfabeto, 'g')] = ArrayAdapter.get_string_ref(estados, "q8");;
+        matriz[ArrayAdapter.get_string_ref(estados, "q7")][ArrayAdapter.get_char_ref(alfabeto, 'g')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q7")][ArrayAdapter.get_char_ref(alfabeto, 'n')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q7")][ArrayAdapter.get_char_ref(alfabeto, 'L')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q7")][ArrayAdapter.get_char_ref(alfabeto, '=')] = -1;
@@ -175,15 +178,6 @@ public class ImageVerifier {
         matriz[ArrayAdapter.get_string_ref(estados, "q9")][ArrayAdapter.get_char_ref(alfabeto, 'L')] = -1;
         matriz[ArrayAdapter.get_string_ref(estados, "q9")][ArrayAdapter.get_char_ref(alfabeto, '=')] = -1;
         
-        //transições de q10
-        matriz[ArrayAdapter.get_string_ref(estados, "q10")][ArrayAdapter.get_char_ref(alfabeto, '"')] = -1;
-        matriz[ArrayAdapter.get_string_ref(estados, "q10")][ArrayAdapter.get_char_ref(alfabeto, '.')] = -1;
-        matriz[ArrayAdapter.get_string_ref(estados, "q10")][ArrayAdapter.get_char_ref(alfabeto, 'j')] = -1;
-        matriz[ArrayAdapter.get_string_ref(estados, "q10")][ArrayAdapter.get_char_ref(alfabeto, 'p')] = -1;
-        matriz[ArrayAdapter.get_string_ref(estados, "q10")][ArrayAdapter.get_char_ref(alfabeto, 'g')] = -1;
-        matriz[ArrayAdapter.get_string_ref(estados, "q10")][ArrayAdapter.get_char_ref(alfabeto, 'n')] = -1;
-        matriz[ArrayAdapter.get_string_ref(estados, "q10")][ArrayAdapter.get_char_ref(alfabeto, 'L')] = -1;
-        matriz[ArrayAdapter.get_string_ref(estados, "q10")][ArrayAdapter.get_char_ref(alfabeto, '=')] = -1;
         
         int estado = ArrayAdapter.get_string_ref (estados, estado_inicial);
         int estado_anterior = -1;
