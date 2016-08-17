@@ -21,9 +21,9 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.UnsupportedLookAndFeelException;
 import ui.image.FileTransfer;
-import ui.swing.ColorController;
-import ui.swing.ImageLink;
-import ui.swing.ImageLinkRenderer;
+import ui.swing.utils.ColorController;
+import ui.swing.imageLink.ImageLink;
+import ui.swing.imageLink.ImageLinkRenderer;
 import ui.swing.webLaf.WeblafUtils;
 
 /**
@@ -31,18 +31,17 @@ import ui.swing.webLaf.WeblafUtils;
  * @author 5663296
  */
 public class MainWindow extends javax.swing.JFrame {
-    ListFiller filler;
     int pX, pY;
+    ListBuilder builder;
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
         initComponents();
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(30);
         this.setLocationRelativeTo(null);
-        imageList.setCellRenderer(new ImageLinkRenderer());
-        filler = new ListFiller(imageList, this);
         configureTheme();
-        
+        builder = new ListBuilder(imagePane, this);
         textURL.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -73,55 +72,21 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         
-        
-        imageList.addMouseListener(new MouseAdapter()
-        {
-          @Override
-          public void mouseClicked(MouseEvent event)
-          {
-              if(event.getClickCount()==2){
-                downloadSelectedItem();
-              }
-          }
-        });
-        imageList.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    downloadSelectedItem();
-                }
-            }
-        });
     }
     
-    private void downloadSelectedItem(){
-        String url = ((ImageLink) imageList.getSelectedValue()).getUrl();
-        JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new File("/home/me/Documents"));
-        chooser.setSelectedFile(new File(((ImageLink) imageList.getSelectedValue()).getNome()));
-        int retrival = chooser.showSaveDialog(null);
-        if (retrival == JFileChooser.APPROVE_OPTION) {
-            try {
-                FileTransfer.saveFile(chooser.getSelectedFile().toString(), url.substring(url.length()-3), FileTransfer.downloadImage(url));
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
+    
     
     private void configureTheme(){
         WeblafUtils.instalaWeblaf();
-        WeblafUtils.configuraWebLaf(jScrollPane2);
         WeblafUtils.configuraWeblaf(jPanel2);
         WeblafUtils.configuraWebLaf(textURL);
+        WeblafUtils.configuraWebLaf(jScrollPane1);
         WeblafUtils.configurarBotao(webButton1, ColorController.COR_DESTAQUE, ColorController.COR_LETRA);
         WeblafUtils.configurarBotao(webButton2, ColorController.COR_PRINCIPAL, ColorController.COR_LETRA,ColorController.PROGRESS_BAR, Color.orange, 5);
         WeblafUtils.configurarBotao(webButton3, ColorController.COR_PRINCIPAL, ColorController.COR_LETRA,ColorController.FUNDO_CLARO, Color.orange, 5);
         jPanel2.setBackground(ColorController.COR_PRINCIPAL);
         jPanel3.setBackground(ColorController.COR_PRINCIPAL);
-        jScrollPane2.setBackground(ColorController.COR_DESTAQUE);
-        jScrollPane2.setCorner(JScrollPane.LOWER_RIGHT_CORNER, null);
-        imageList.setBackground(ColorController.COR_DESTAQUE);
+        imagePane.setBackground(ColorController.COR_DESTAQUE);
     }
     
     /**
@@ -142,8 +107,8 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         textURL = new javax.swing.JTextField();
         webButton1 = new com.alee.laf.button.WebButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        imageList = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        imagePane = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Image Searcher");
@@ -205,9 +170,10 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel2.add(jPanel1, java.awt.BorderLayout.NORTH);
 
-        jScrollPane2.setViewportView(imageList);
+        imagePane.setLayout(new java.awt.GridLayout(0, 1));
+        jScrollPane1.setViewportView(imagePane);
 
-        jPanel2.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+        jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -215,10 +181,10 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void webButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webButton1ActionPerformed
+        imagePane.removeAll();
         String siteURL = textURL.getText();
-        DefaultListModel<ImageLink> model = new DefaultListModel<>();
-        imageList.setModel(model);
-        filler.fillList(siteURL);
+        builder.fillList(siteURL);
+        
     }//GEN-LAST:event_webButton1ActionPerformed
 
     private void webButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webButton2ActionPerformed
@@ -248,12 +214,12 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<ImageLink> imageList;
+    private javax.swing.JPanel imagePane;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelURl;
     private javax.swing.JTextField textURL;
     private com.alee.laf.button.WebButton webButton1;

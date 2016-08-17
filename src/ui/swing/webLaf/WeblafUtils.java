@@ -22,7 +22,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Locale;
 import javax.swing.*;
-import ui.swing.ColorController;
+import ui.swing.utils.ColorController;
 
 /**
  *

@@ -5,6 +5,8 @@
  */
 package ui.swing;
 
+import ui.swing.imageLink.ImageLink;
+import ui.swing.imageLink.ImageLinkRenderer;
 import core.sintatico.verificador.ImageVerifier;
 import core.web.ResourcesGetter;
 import core.web.URLGenerator;

@@ -1,4 +1,4 @@
-package ui.swing;
+package ui.swing.test;
 
 import java.awt.*;
 import java.awt.event.*;

@@ -12,7 +12,8 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import ui.ListFiller;
+import ui.ImageLinkPanel;
+import ui.ListBuilder;
 
 /**
  *
@@ -23,6 +24,9 @@ public class ImageLoader{
     Image proxyImage;
     String path;
     int size;
+    int imageWidth;
+    int imageHeight;
+    ImageLinkPanel ilp;
 
     public ImageLoader(String path, int size) {
         URL url = getClass().getResource("/XIcon.png");
@@ -43,14 +47,38 @@ public class ImageLoader{
             assert(bi1 != null);
             try {
                 setImage(ImageEditor.resizeImage(bi1, 64));
+                setImageHeight(bi1.getHeight());
+                setImageWidth(bi1.getWidth());
+                ilp.update();
             } catch (Exception e) {
                 setImage(ImageEditor.resizeImage(backupImage, 64));
             }
-            ListFiller.updateWindow();
+            ListBuilder.updateWindow();
         });
         t.start();
     }
 
+    public void setIlp(ImageLinkPanel ilp) {
+        this.ilp = ilp;
+    }
+    
+
+    public int getImageWidth() {
+        return imageWidth;
+    }
+
+    public int getImageHeight() {
+        return imageHeight;
+    }
+
+    private synchronized void setImageWidth(int imageWidth) {
+        this.imageWidth = imageWidth;
+    }
+
+    private synchronized void setImageHeight(int imageHeight) {
+        this.imageHeight = imageHeight;
+    }
+    
     private synchronized void setImage(Image image) {
         this.image = image;
     }

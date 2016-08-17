@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.swing;
+package ui.swing.imageLink;
 
 import java.awt.Component;
 import javax.swing.DefaultListCellRenderer;
@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.border.EmptyBorder;
+import ui.swing.utils.ColorController;
 
 /**
  *
