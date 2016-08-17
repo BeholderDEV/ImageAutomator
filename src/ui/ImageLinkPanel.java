@@ -5,6 +5,7 @@
  */
 package ui;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -29,9 +30,13 @@ public class ImageLinkPanel extends javax.swing.JPanel {
      */
     public ImageLinkPanel(ImageLink imageLink) {
         initComponents();
+        
         this.imageLink = imageLink;
         this.imageLink.getImageLoader().setIlp(this);
-        imagePanel.setIcon(new ImageIcon(this.imageLink.getImageLoader().getImage()));
+        
+        
+        WeblafUtils.configuraWebLaf(jCheckBox1);
+        imagePanel.setIcon(new ImageIcon(this.imageLink.getImageLoader().getImageThumb()));
         imagePanel.setText("");
         size.setText("");
         nameLabel.setText(this.imageLink.getNome());
@@ -39,6 +44,7 @@ public class ImageLinkPanel extends javax.swing.JPanel {
         nameLabel.setForeground(ColorController.COR_LETRA);
         size.setForeground(ColorController.COR_LETRA);
         WeblafUtils.configurarBotao(downloadButton, ColorController.COR_PRINCIPAL, ColorController.COR_LETRA, 10);
+        WeblafUtils.configurarBotao(downloadButton1, ColorController.COR_PRINCIPAL, ColorController.COR_LETRA, 10);
     }
 
     public boolean isSelected() {
@@ -48,10 +54,8 @@ public class ImageLinkPanel extends javax.swing.JPanel {
     public void setSelected(boolean selected) {
         this.selected = selected;
         if(selected){
-            System.out.println("entroo");
             setBackground(ColorController.FUNDO_ESCURO);
         }else{
-            System.out.println("saliu");
             setBackground(ColorController.COR_DESTAQUE);
         }
         invalidate();
@@ -59,7 +63,7 @@ public class ImageLinkPanel extends javax.swing.JPanel {
     }
     
     public void update(){
-        imagePanel.setIcon(new ImageIcon(this.imageLink.getImageLoader().getImage()));
+        imagePanel.setIcon(new ImageIcon(this.imageLink.getImageLoader().getImageThumb()));
         nameLabel.setText(this.imageLink.getNome());
         size.setText("("+imageLink.getImageLoader().getImageWidth()+"x"+imageLink.getImageLoader().getImageHeight()+")");
     }
@@ -75,10 +79,14 @@ public class ImageLinkPanel extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         nameLabel = new javax.swing.JLabel();
-        downloadButton = new com.alee.laf.button.WebButton();
         jPanel2 = new javax.swing.JPanel();
-        size = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jPanel3 = new javax.swing.JPanel();
         imagePanel = new javax.swing.JLabel();
+        size = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        downloadButton = new com.alee.laf.button.WebButton();
+        downloadButton1 = new com.alee.laf.button.WebButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -97,24 +105,45 @@ public class ImageLinkPanel extends javax.swing.JPanel {
         nameLabel.setText("name");
         jPanel1.add(nameLabel, java.awt.BorderLayout.CENTER);
 
-        downloadButton.setText("Download");
+        jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 2, 2, 2));
+        jPanel2.setOpaque(false);
+        jPanel2.setLayout(new java.awt.BorderLayout(5, 0));
+        jPanel2.add(jCheckBox1, java.awt.BorderLayout.WEST);
+
+        jPanel3.setOpaque(false);
+        jPanel3.setLayout(new java.awt.BorderLayout());
+
+        imagePanel.setText("image");
+        jPanel3.add(imagePanel, java.awt.BorderLayout.CENTER);
+
+        size.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        size.setText("size");
+        jPanel3.add(size, java.awt.BorderLayout.SOUTH);
+
+        jPanel2.add(jPanel3, java.awt.BorderLayout.LINE_END);
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.WEST);
+
+        jPanel4.setOpaque(false);
+        jPanel4.setLayout(new java.awt.GridLayout(0, 1, 0, 5));
+
+        downloadButton.setText("Preview");
         downloadButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 downloadButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(downloadButton, java.awt.BorderLayout.EAST);
+        jPanel4.add(downloadButton);
 
-        jPanel2.setOpaque(false);
-        jPanel2.setLayout(new java.awt.BorderLayout());
+        downloadButton1.setText("Download");
+        downloadButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                downloadButton1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(downloadButton1);
 
-        size.setText("size");
-        jPanel2.add(size, java.awt.BorderLayout.SOUTH);
-
-        imagePanel.setText("image");
-        jPanel2.add(imagePanel, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(jPanel2, java.awt.BorderLayout.WEST);
+        jPanel1.add(jPanel4, java.awt.BorderLayout.EAST);
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -122,18 +151,7 @@ public class ImageLinkPanel extends javax.swing.JPanel {
     
     
     private void downloadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadButtonActionPerformed
-        String url = imageLink.getUrl();
-        JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new File("/home/me/Documents"));
-        chooser.setSelectedFile(new File(imageLink.getNome()));
-        int retrival = chooser.showSaveDialog(null);
-        if (retrival == JFileChooser.APPROVE_OPTION) {
-            try {
-                FileTransfer.saveFile(chooser.getSelectedFile().toString(), url.substring(url.length()-3), FileTransfer.downloadImage(url));
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
+        
     }//GEN-LAST:event_downloadButtonActionPerformed
 
     private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
@@ -144,12 +162,31 @@ public class ImageLinkPanel extends javax.swing.JPanel {
         setSelected(false);
     }//GEN-LAST:event_jPanel1MouseExited
 
+    private void downloadButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadButton1ActionPerformed
+        String url = imageLink.getUrl();
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new File("/home/me/Documents"));
+        chooser.setSelectedFile(new File(imageLink.getNome()));
+        int retrival = chooser.showSaveDialog(null);
+        if (retrival == JFileChooser.APPROVE_OPTION) {
+            try {
+                FileTransfer.saveFile(chooser.getSelectedFile().toString(), url.substring(url.length()-3),(BufferedImage) imageLink.getImageLoader().getImage());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_downloadButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.alee.laf.button.WebButton downloadButton;
+    private com.alee.laf.button.WebButton downloadButton1;
     private javax.swing.JLabel imagePanel;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel size;
     // End of variables declaration//GEN-END:variables

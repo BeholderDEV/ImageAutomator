@@ -5,6 +5,7 @@ import com.alee.laf.WebLookAndFeel;
 import com.alee.laf.button.WebButton;
 import com.alee.laf.button.WebButtonUI;
 import com.alee.laf.button.WebToggleButton;
+import com.alee.laf.checkbox.WebCheckBoxUI;
 import com.alee.laf.panel.WebPanelUI;
 import com.alee.laf.scroll.WebScrollBarUI;
 import com.alee.laf.scroll.WebScrollPaneUI;
@@ -54,16 +55,34 @@ public class WeblafUtils {
         }
     }
     
-     public static void configuraWebLaf(JTextField field) {
-        if (!WeblafUtils.weblafEstaInstalado()) {
-            return;
-        }
-        ((WebTextFieldUI) field.getUI()).setDrawBorder(false);
-        ((WebTextFieldUI) field.getUI()).setDrawBackground(true);
-        field.setOpaque(true);
-        field.setBackground(ColorController.COR_DESTAQUE);
-        field.setForeground(ColorController.COR_LETRA);
-     }
+    public static void configuraWebLaf(JTextField field) {
+       if (!WeblafUtils.weblafEstaInstalado()) {
+           return;
+       }
+       ((WebTextFieldUI) field.getUI()).setDrawBorder(false);
+       ((WebTextFieldUI) field.getUI()).setDrawBackground(true);
+       field.setOpaque(true);
+       field.setBackground(ColorController.COR_DESTAQUE);
+       field.setForeground(ColorController.COR_LETRA);
+    }
+    
+    public static void configuraWebLaf(JCheckBox field) {
+       if (!WeblafUtils.weblafEstaInstalado()) {
+           return;
+       }
+       ((WebCheckBoxUI) field.getUI()).setBorderColor(ColorController.COR_PRINCIPAL);
+       ((WebCheckBoxUI) field.getUI()).setRound(0);
+       ((WebCheckBoxUI) field.getUI()).setDarkBorderColor(ColorController.COR_PRINCIPAL);
+       ((WebCheckBoxUI) field.getUI()).setShadeWidth(0);
+       ((WebCheckBoxUI) field.getUI()).setBottomBgColor(ColorController.COR_PRINCIPAL);
+       ((WebCheckBoxUI) field.getUI()).setTopBgColor(ColorController.COR_PRINCIPAL);
+       ((WebCheckBoxUI) field.getUI()).setBottomSelectedBgColor(ColorController.COR_DESTAQUE);
+       ((WebCheckBoxUI) field.getUI()).setTopSelectedBgColor(ColorController.COR_DESTAQUE);
+//       ((WebCheckBoxUI) field.getUI()).setDrawBackground(true);
+       field.setOpaque(true);
+       field.setBackground(ColorController.COR_DESTAQUE);
+       field.setForeground(ColorController.COR_LETRA);
+    }
 
    
     public static void configuraWebLaf(JScrollPane scroll) {

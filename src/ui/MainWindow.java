@@ -82,6 +82,7 @@ public class MainWindow extends javax.swing.JFrame {
         WeblafUtils.configuraWebLaf(textURL);
         WeblafUtils.configuraWebLaf(jScrollPane1);
         WeblafUtils.configurarBotao(webButton1, ColorController.COR_DESTAQUE, ColorController.COR_LETRA);
+        WeblafUtils.configurarBotao(webButton4, ColorController.COR_DESTAQUE, ColorController.COR_LETRA);
         WeblafUtils.configurarBotao(webButton2, ColorController.COR_PRINCIPAL, ColorController.COR_LETRA,ColorController.PROGRESS_BAR, Color.orange, 5);
         WeblafUtils.configurarBotao(webButton3, ColorController.COR_PRINCIPAL, ColorController.COR_LETRA,ColorController.FUNDO_CLARO, Color.orange, 5);
         jPanel2.setBackground(ColorController.COR_PRINCIPAL);
@@ -109,6 +110,8 @@ public class MainWindow extends javax.swing.JFrame {
         webButton1 = new com.alee.laf.button.WebButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         imagePane = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        webButton4 = new com.alee.laf.button.WebButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Image Searcher");
@@ -175,6 +178,19 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
+        jPanel5.setOpaque(false);
+        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+
+        webButton4.setText("Dowanload Selecteds");
+        webButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                webButton4ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(webButton4);
+
+        jPanel2.add(jPanel5, java.awt.BorderLayout.SOUTH);
+
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         pack();
@@ -194,6 +210,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void webButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webButton3ActionPerformed
         setExtendedState(JFrame.ICONIFIED);
     }//GEN-LAST:event_webButton3ActionPerformed
+
+    private void webButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_webButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,11 +239,13 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelURl;
     private javax.swing.JTextField textURL;
     private com.alee.laf.button.WebButton webButton1;
     private com.alee.laf.button.WebButton webButton2;
     private com.alee.laf.button.WebButton webButton3;
+    private com.alee.laf.button.WebButton webButton4;
     // End of variables declaration//GEN-END:variables
 }

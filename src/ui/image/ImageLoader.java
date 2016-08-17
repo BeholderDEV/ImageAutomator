@@ -20,7 +20,8 @@ import ui.ListBuilder;
  * @author lite
  */
 public class ImageLoader{
-    volatile Image image;
+    volatile Image imageThumb;
+    volatile Image imageFull;
     Image proxyImage;
     String path;
     int size;
@@ -46,12 +47,13 @@ public class ImageLoader{
             BufferedImage bi1 = FileTransfer.downloadImage(path);
             assert(bi1 != null);
             try {
-                setImage(ImageEditor.resizeImage(bi1, 64));
+                setImage(bi1);
+                setImageThumb(ImageEditor.resizeImage(bi1, 64));
                 setImageHeight(bi1.getHeight());
                 setImageWidth(bi1.getWidth());
                 ilp.update();
             } catch (Exception e) {
-                setImage(ImageEditor.resizeImage(backupImage, 64));
+                setImageThumb(ImageEditor.resizeImage(backupImage, 64));
             }
             ListBuilder.updateWindow();
         });
@@ -80,12 +82,22 @@ public class ImageLoader{
     }
     
     private synchronized void setImage(Image image) {
-        this.image = image;
+        this.imageFull = image;
     }
     
+    private synchronized void setImageThumb(Image image) {
+        this.imageThumb = image;
+    }
+    
+    public synchronized Image getImageThumb(){
+        if(imageAvailable()){
+            return imageThumb;
+        }
+        return proxyImage;
+    }
     public synchronized Image getImage(){
         if(imageAvailable()){
-            return image;
+            return imageFull;
         }
         return proxyImage;
     }
@@ -93,6 +105,6 @@ public class ImageLoader{
     
     private synchronized boolean imageAvailable()
     {
-        return image != null;
+        return imageThumb != null;
     }    
 }

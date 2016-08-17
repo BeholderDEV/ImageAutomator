@@ -30,7 +30,7 @@ public class ImageLinkRenderer extends DefaultListCellRenderer{
     public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         JLabel component = (JLabel) this;
         ImageLink imageLink = (ImageLink) value;
-        component.setIcon(new ImageIcon(imageLink.imageLoader.getImage()));
+        component.setIcon(new ImageIcon(imageLink.imageLoader.getImageThumb()));
         component.setText(imageLink.nome);
         if(isSelected){
             setOpaque(true);
