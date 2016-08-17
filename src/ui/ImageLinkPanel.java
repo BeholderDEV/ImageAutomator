@@ -46,12 +46,16 @@ public class ImageLinkPanel extends javax.swing.JPanel {
     }
 
     public void setSelected(boolean selected) {
+        this.selected = selected;
         if(selected){
+            System.out.println("entroo");
             setBackground(ColorController.FUNDO_ESCURO);
         }else{
+            System.out.println("saliu");
             setBackground(ColorController.COR_DESTAQUE);
         }
-        this.selected = selected;
+        invalidate();
+        repaint();
     }
     
     public void update(){
@@ -79,6 +83,14 @@ public class ImageLinkPanel extends javax.swing.JPanel {
         setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel1MouseExited(evt);
+            }
+        });
         jPanel1.setLayout(new java.awt.BorderLayout());
 
         nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -123,6 +135,14 @@ public class ImageLinkPanel extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_downloadButtonActionPerformed
+
+    private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
+        setSelected(true);
+    }//GEN-LAST:event_jPanel1MouseEntered
+
+    private void jPanel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseExited
+        setSelected(false);
+    }//GEN-LAST:event_jPanel1MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
