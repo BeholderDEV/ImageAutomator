@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import ui.Application;
 import ui.ImageLinkPanel;
-import ui.ListBuilder;
 
 /**
  *

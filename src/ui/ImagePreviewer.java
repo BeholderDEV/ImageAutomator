@@ -5,9 +5,11 @@
  */
 package ui;
 
+import java.awt.Color;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import javax.swing.AbstractAction;
@@ -37,7 +39,7 @@ public class ImagePreviewer extends javax.swing.JFrame {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         jPanel1.setBackground(ColorController.FUNDO_ESCURO);
-        WeblafUtils.configurarBotao(webButton1,ColorController.FUNDO_ESCURO, ColorController.FUNDO_ESCURO, ColorController.COR_DESTAQUE, ColorController.COR_DESTAQUE, 10);
+        WeblafUtils.configurarBotao(webButton1,new Color(0, 0, 0, 0), ColorController.FUNDO_ESCURO, ColorController.COR_DESTAQUE, ColorController.COR_DESTAQUE, 10);
         
         createExitAction();
         
@@ -62,12 +64,9 @@ public class ImagePreviewer extends javax.swing.JFrame {
 
     public void previewImage(Image image) {
         this.image = image;
-        if(jLabel1.getWidth()>0 && jLabel1.getHeight()>0){
-            jLabel1.setIcon(new ImageIcon(ImageEditor.resizeImage((BufferedImage) image, jLabel1.getWidth(), jLabel1.getHeight())));
-        }
-        else{
-            jLabel1.setIcon(new ImageIcon(image));
-        }
+        
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        jLabel1.setIcon(new ImageIcon(ImageEditor.resizeImage((BufferedImage) image, gd.getDisplayMode().getWidth(), gd.getDisplayMode().getHeight())));
         
         setVisible(true);
     }
@@ -82,6 +81,7 @@ public class ImagePreviewer extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -93,8 +93,7 @@ public class ImagePreviewer extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jPanel2.setOpaque(false);
         jPanel2.setLayout(new java.awt.BorderLayout());
@@ -103,7 +102,11 @@ public class ImagePreviewer extends javax.swing.JFrame {
         webButton1.setHideActionText(true);
         jPanel2.add(webButton1, java.awt.BorderLayout.WEST);
 
-        jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_START);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        jPanel1.add(jPanel2, gridBagConstraints);
 
         jPanel3.setOpaque(false);
         jPanel3.setLayout(new java.awt.BorderLayout());
@@ -111,7 +114,16 @@ public class ImagePreviewer extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel3.add(jLabel1, java.awt.BorderLayout.CENTER);
 
-        jPanel1.add(jPanel3, java.awt.BorderLayout.CENTER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 13;
+        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(jPanel3, gridBagConstraints);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
