@@ -79,8 +79,8 @@ public class WeblafUtils {
        ((WebCheckBoxUI) field.getUI()).setBottomSelectedBgColor(ColorController.COR_DESTAQUE);
        ((WebCheckBoxUI) field.getUI()).setTopSelectedBgColor(ColorController.COR_DESTAQUE);
 //       ((WebCheckBoxUI) field.getUI()).setDrawBackground(true);
-       field.setOpaque(true);
-       field.setBackground(ColorController.COR_DESTAQUE);
+       field.setOpaque(false);
+//       field.setBackground(ColorController.COR_DESTAQUE);
        field.setForeground(ColorController.COR_LETRA);
     }
 

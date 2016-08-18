@@ -40,11 +40,12 @@ public class ImageLinkPanel extends javax.swing.JPanel {
         imagePanel.setText("");
         size.setText("");
         nameLabel.setText(this.imageLink.getNome());
-        jPanel1.setBackground(ColorController.COR_DESTAQUE);
+        setBackground(ColorController.COR_DESTAQUE);
+        jPanel6.setBackground(ColorController.COR_PRINCIPAL);
         nameLabel.setForeground(ColorController.COR_LETRA);
         size.setForeground(ColorController.COR_LETRA);
-        WeblafUtils.configurarBotao(downloadButton, ColorController.COR_PRINCIPAL, ColorController.COR_LETRA, 10);
-        WeblafUtils.configurarBotao(downloadButton1, ColorController.COR_PRINCIPAL, ColorController.COR_LETRA, 10);
+        WeblafUtils.configurarBotao(downloadButton, ColorController.COR_DESTAQUE, ColorController.COR_LETRA, ColorController.COR_PRINCIPAL, ColorController.COR_LETRA, 10);
+        WeblafUtils.configurarBotao(downloadButton1, ColorController.COR_DESTAQUE, ColorController.COR_LETRA, ColorController.COR_PRINCIPAL, ColorController.COR_LETRA, 10);
     }
 
     public boolean isSelected() {
@@ -77,20 +78,31 @@ public class ImageLinkPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        nameLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        imagePanel = new javax.swing.JLabel();
         size = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        nameLabel = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         downloadButton = new com.alee.laf.button.WebButton();
         downloadButton1 = new com.alee.laf.button.WebButton();
+        imagePanel = new javax.swing.JLabel();
+
+        jPanel2.setMinimumSize(new java.awt.Dimension(10, 8));
+        jPanel2.setOpaque(false);
+        jPanel2.setPreferredSize(new java.awt.Dimension(10, 8));
+        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
+
+        jPanel6.setPreferredSize(new java.awt.Dimension(400, 1));
+        jPanel2.add(jPanel6);
 
         setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        jPanel1.setOpaque(false);
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPanel1MouseEntered(evt);
@@ -101,33 +113,30 @@ public class ImageLinkPanel extends javax.swing.JPanel {
         });
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nameLabel.setText("name");
-        jPanel1.add(nameLabel, java.awt.BorderLayout.CENTER);
+        jPanel5.setOpaque(false);
+        jPanel5.setLayout(new java.awt.BorderLayout());
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 2, 2, 2));
-        jPanel2.setOpaque(false);
-        jPanel2.setLayout(new java.awt.BorderLayout(5, 0));
-        jPanel2.add(jCheckBox1, java.awt.BorderLayout.WEST);
-
+        jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         jPanel3.setOpaque(false);
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        imagePanel.setText("image");
-        jPanel3.add(imagePanel, java.awt.BorderLayout.CENTER);
-
+        size.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         size.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         size.setText("size");
         jPanel3.add(size, java.awt.BorderLayout.SOUTH);
+        jPanel3.add(jCheckBox1, java.awt.BorderLayout.EAST);
 
-        jPanel2.add(jPanel3, java.awt.BorderLayout.LINE_END);
+        nameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nameLabel.setText("name");
+        jPanel3.add(nameLabel, java.awt.BorderLayout.CENTER);
 
-        jPanel1.add(jPanel2, java.awt.BorderLayout.WEST);
+        jPanel5.add(jPanel3, java.awt.BorderLayout.CENTER);
 
         jPanel4.setOpaque(false);
-        jPanel4.setLayout(new java.awt.GridLayout(0, 1, 0, 5));
+        jPanel4.setLayout(new java.awt.GridLayout(1, 0, 5, 0));
 
-        downloadButton.setText("Preview");
+        downloadButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/resources/preview.png"))); // NOI18N
         downloadButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 downloadButtonActionPerformed(evt);
@@ -135,7 +144,7 @@ public class ImageLinkPanel extends javax.swing.JPanel {
         });
         jPanel4.add(downloadButton);
 
-        downloadButton1.setText("Download");
+        downloadButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/resources/download.png"))); // NOI18N
         downloadButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 downloadButton1ActionPerformed(evt);
@@ -143,7 +152,14 @@ public class ImageLinkPanel extends javax.swing.JPanel {
         });
         jPanel4.add(downloadButton1);
 
-        jPanel1.add(jPanel4, java.awt.BorderLayout.EAST);
+        jPanel5.add(jPanel4, java.awt.BorderLayout.EAST);
+
+        jPanel1.add(jPanel5, java.awt.BorderLayout.CENTER);
+
+        imagePanel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imagePanel.setText("image");
+        imagePanel.setPreferredSize(new java.awt.Dimension(64, 64));
+        jPanel1.add(imagePanel, java.awt.BorderLayout.WEST);
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -187,6 +203,8 @@ public class ImageLinkPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel size;
     // End of variables declaration//GEN-END:variables
