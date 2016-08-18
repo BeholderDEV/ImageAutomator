@@ -3,10 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/lite/Documents/Github/ImageAutomator/src/ui/image/ImageLoader.java</file>
+            <file>file:/C:/Users/lite/Documents/Github/ImageAutomator/src/ui/image/FileTransfer.java</file>
             <file>file:/C:/Users/lite/Documents/Github/ImageAutomator/src/ui/MainWindow.java</file>
-            <file>file:/C:/Users/lite/Documents/Github/ImageAutomator/src/ui/ImageLinkPanel.java</file>
-            <file>file:/C:/Users/lite/Documents/Github/ImageAutomator/src/ui/swing/imageLink/ImageLink.java</file>
+            <file>file:/C:/Users/lite/Documents/Github/ImageAutomator/src/core/web/ResourcesGetter.java</file>
+            <file>file:/C:/Users/lite/Documents/Github/ImageAutomator/src/ui/ListBuilder.java</file>
+            <file>file:/C:/Users/lite/Documents/Github/ImageAutomator/src/core/web/URLGenerator.java</file>
+            <file>file:/C:/Users/lite/Documents/Github/ImageAutomator/src/ui/swing/imageLink/ImageLinkPanel.java</file>
+            <file>file:/C:/Users/lite/Documents/Github/ImageAutomator/src/ui/Application.java</file>
+            <file>file:/C:/Users/lite/Documents/Github/ImageAutomator/src/core/util/ArrayAdapter.java</file>
+            <file>file:/C:/Users/lite/Documents/Github/ImageAutomator/src/core/sintatico/verificador/ImageVerifier.java</file>
         </group>
     </open-files>
 </project-private>

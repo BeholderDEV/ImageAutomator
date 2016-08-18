@@ -199,7 +199,16 @@ public class ImageVerifier {
                 if (ArrayAdapter.get_string_ref(estados_finais, estados[estado_anterior]) != -1){
                     //se a palavra não é vazia adiciona palavra reconhecida
                     if ( ! palavra.equals("")){
-                        palavras_reconhecidas.add(palavra);
+                        boolean jaExiste=false;
+                        for (String palavras_reconhecida : palavras_reconhecidas) {
+                            if(palavras_reconhecida.equals(palavra)){
+                                jaExiste=true;
+                            }
+                        }
+                        if(!jaExiste){
+                            palavras_reconhecidas.add(palavra);
+                        }
+                        
                     }
                     // se ao analisar este caracter não houve transição
                     // teste-o novamente, considerando que o estado seja inicial
