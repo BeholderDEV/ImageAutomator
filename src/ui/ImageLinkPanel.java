@@ -20,8 +20,8 @@ import ui.swing.webLaf.WeblafUtils;
  */
 public class ImageLinkPanel extends javax.swing.JPanel {
     
-    ImageLink imageLink;
-    
+    private ImageLink imageLink;
+    private boolean checked = false;
     private boolean selected = false;
     
     /**
@@ -48,6 +48,14 @@ public class ImageLinkPanel extends javax.swing.JPanel {
         WeblafUtils.configurarBotao(downloadButton1, ColorController.COR_DESTAQUE, ColorController.COR_LETRA, ColorController.COR_PRINCIPAL, ColorController.COR_LETRA, 10);
     }
 
+    public ImageLink getImageLink() {
+        return imageLink;
+    }   
+
+    public boolean isChecked() {
+        return checked;
+    }
+    
     public boolean isSelected() {
         return selected;
     }
@@ -124,6 +132,12 @@ public class ImageLinkPanel extends javax.swing.JPanel {
         size.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         size.setText("size");
         jPanel3.add(size, java.awt.BorderLayout.SOUTH);
+
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jCheckBox1, java.awt.BorderLayout.EAST);
 
         nameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -192,6 +206,17 @@ public class ImageLinkPanel extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_downloadButton1ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        if(checked == true)
+        {
+            checked=false;
+        }
+        else
+        {
+            checked=true;
+        }
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

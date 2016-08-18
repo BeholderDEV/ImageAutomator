@@ -6,13 +6,20 @@
 package ui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileFilter;
+import ui.image.FileTransfer;
+import ui.swing.imageLink.ImageLink;
 import ui.swing.utils.ColorController;
 import ui.swing.webLaf.WeblafUtils;
 
@@ -207,7 +214,28 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_webButton3ActionPerformed
 
     private void webButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webButton4ActionPerformed
-        // TODO add your handling code here:
+        Component[] components = imagePane.getComponents();
+        String url = null;
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new File("/home/me/Documents"));
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int retrival = chooser.showSaveDialog(null);
+        
+        if (retrival == JFileChooser.APPROVE_OPTION) {
+                
+            for (Component component : components) {
+                if(((ImageLinkPanel) component).isChecked()){
+                    ImageLink imageLink = ((ImageLinkPanel) component).getImageLink();
+                    url = imageLink.getUrl();
+                    try {
+                        FileTransfer.saveFile(chooser.getSelectedFile().toString(), url.substring(url.length()-3),(BufferedImage) imageLink.getImageLoader().getImage());
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }            
+            }
+        }
+        
     }//GEN-LAST:event_webButton4ActionPerformed
 
 
