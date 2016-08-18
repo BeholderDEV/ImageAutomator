@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui;
+package ui.swing.imageLink;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import ui.Application;
 import ui.image.FileTransfer;
 import ui.swing.imageLink.ImageLink;
 import ui.swing.utils.ColorController;
@@ -21,7 +22,6 @@ import ui.swing.webLaf.WeblafUtils;
 public class ImageLinkPanel extends javax.swing.JPanel {
     
     private ImageLink imageLink;
-    private boolean checked = false;
     private boolean selected = false;
     
     /**
@@ -53,7 +53,7 @@ public class ImageLinkPanel extends javax.swing.JPanel {
     }   
 
     public boolean isChecked() {
-        return checked;
+        return jCheckBox1.isSelected();
     }
     
     public boolean isSelected() {
@@ -208,14 +208,7 @@ public class ImageLinkPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_downloadButton1ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        if(checked == true)
-        {
-            checked=false;
-        }
-        else
-        {
-            checked=true;
-        }
+        
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
 

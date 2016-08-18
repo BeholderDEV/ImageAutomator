@@ -5,6 +5,7 @@
  */
 package ui;
 
+import ui.swing.imageLink.ImageLinkPanel;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.KeyAdapter;
@@ -14,10 +15,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-import javax.swing.filechooser.FileFilter;
 import ui.image.FileTransfer;
 import ui.swing.imageLink.ImageLink;
 import ui.swing.utils.ColorController;
@@ -30,6 +31,7 @@ import ui.swing.webLaf.WeblafUtils;
 public class MainWindow extends javax.swing.JFrame {
     int pX, pY;
     ListBuilder builder;
+    List<ImageLinkPanel> imageLinkPanels;
     /**
      * Creates new form MainWindow
      */
@@ -39,6 +41,7 @@ public class MainWindow extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         configureTheme();
         builder = new ListBuilder();
+        imageLinkPanels=builder.getImageLinkPanels();
         textURL.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {

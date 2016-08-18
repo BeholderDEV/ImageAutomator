@@ -5,28 +5,29 @@
  */
 package ui;
 
+import ui.swing.imageLink.ImageLinkPanel;
 import ui.swing.imageLink.ImageLink;
 import core.sintatico.verificador.ImageVerifier;
 import core.web.ResourcesGetter;
 import core.web.URLGenerator;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  *
  * @author lite
  */
 public class ListBuilder {
-    
-    
-    
-    String siteUrl;
+    private List<ImageLinkPanel> imageLinkPanels;
+    private String siteUrl;
     
     public ListBuilder() {
+        imageLinkPanels = new ArrayList<>();
     }
-    
+
+    public List<ImageLinkPanel> getImageLinkPanels() {
+        return imageLinkPanels;
+    }
     
     public void fillList(String siteURL){
         ResourcesGetter crw = new ResourcesGetter();
@@ -44,6 +45,7 @@ public class ListBuilder {
                 String url = generator.generate(resource);
                 ImageLink imageLink = new ImageLink(url);
                 ImageLinkPanel imageLinkPanel = new ImageLinkPanel(imageLink);
+                imageLinkPanels.add(imageLinkPanel);
                 Application.getInstance().getMainWindow().addImageLinkPanel(imageLinkPanel);
             });
         });
