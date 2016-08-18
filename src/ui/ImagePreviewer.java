@@ -37,7 +37,7 @@ public class ImagePreviewer extends javax.swing.JFrame {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         jPanel1.setBackground(ColorController.FUNDO_ESCURO);
-        WeblafUtils.configurarBotao(webButton1,ColorController.FUNDO_ESCURO, ColorController.FUNDO_ESCURO, 10);
+        WeblafUtils.configurarBotao(webButton1,ColorController.FUNDO_ESCURO, ColorController.FUNDO_ESCURO, ColorController.COR_DESTAQUE, ColorController.COR_DESTAQUE, 10);
         
         createExitAction();
         
