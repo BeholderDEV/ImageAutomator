@@ -5,6 +5,7 @@
  */
 package ui;
 
+import com.alee.extended.filechooser.WebDirectoryChooser;
 import ui.swing.imageLink.ImageLinkPanel;
 import java.awt.Color;
 import java.awt.Component;
@@ -19,6 +20,7 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileFilter;
 import ui.image.FileTransfer;
 import ui.swing.imageLink.ImageLink;
 import ui.swing.utils.ColorController;
@@ -219,10 +221,44 @@ public class MainWindow extends javax.swing.JFrame {
     private void webButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webButton4ActionPerformed
         Component[] components = imagePane.getComponents();
         String url = null;
+//        WebDirectoryChooser wchooser = new WebDirectoryChooser(this);
+//        
+//       int retrival = wchooser.showDialog();
+//       wchooser.setBackground(ColorController.COR_PRINCIPAL);
+        
+//        if (retrival == WebDirectoryChooser.OK_OPTION) {
+//                
+//            for (Component component : components) {
+//                if(((ImageLinkPanel) component).isChecked()){
+//                    ImageLink imageLink = ((ImageLinkPanel) component).getImageLink();
+//                    url = imageLink.getUrl();
+//                    
+//                    try {
+//                        FileTransfer.saveFile(new File(wchooser.getSelectedDirectory(), imageLink.getNome()).toString(), url.substring(url.length()-3),(BufferedImage) imageLink.getImageLoader().getImage());
+//                    } catch (Exception ex) {
+//                        ex.printStackTrace();
+//                    }
+//                }            
+//            }
+//        }
+        
+                
         JFileChooser chooser = new JFileChooser();
         chooser.setCurrentDirectory(new File("/home/me/Documents"));
+        chooser.addChoosableFileFilter(new FileFilter() {
+            @Override
+            public boolean accept(File f) {
+                return f.isDirectory();
+            }
+
+            @Override
+            public String getDescription() {
+                return "Pastas";
+            }
+        });
+        chooser.setAcceptAllFileFilterUsed(false);
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int retrival = chooser.showSaveDialog(null);
+        int retrival = chooser.showSaveDialog(MainWindow.this);
         
         if (retrival == JFileChooser.APPROVE_OPTION) {
                 
@@ -230,8 +266,9 @@ public class MainWindow extends javax.swing.JFrame {
                 if(((ImageLinkPanel) component).isChecked()){
                     ImageLink imageLink = ((ImageLinkPanel) component).getImageLink();
                     url = imageLink.getUrl();
+                    
                     try {
-                        FileTransfer.saveFile(chooser.getSelectedFile().toString(), url.substring(url.length()-3),(BufferedImage) imageLink.getImageLoader().getImage());
+                        FileTransfer.saveFile(new File(chooser.getSelectedFile(), imageLink.getNome()).toString(), url.substring(url.length()-3),(BufferedImage) imageLink.getImageLoader().getImage());
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }

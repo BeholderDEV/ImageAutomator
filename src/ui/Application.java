@@ -7,11 +7,14 @@ package ui;
 
 import com.alee.laf.WebLookAndFeel;
 import java.awt.Image;
+import java.lang.reflect.Field;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.basic.BasicFileChooserUI;
+import javax.swing.plaf.basic.BasicLookAndFeel;
 
 /**
  *
@@ -37,9 +40,17 @@ public class Application {
 
     private void start() {
         try {
-            javax.swing.UIManager.setLookAndFeel(new WebLookAndFeel());
+            final WebLookAndFeel webLookAndFeel = new WebLookAndFeel();
+            //Field defaultsTable = WebLookAndFeel.class.getField("table");
+            //webLookAndFeel.getDefaults().remove("FileChooserUI");
+            webLookAndFeel.getDefaults().put("FileChooserUI", BasicFileChooserUI.class);
+            
+                    
+            javax.swing.UIManager.setLookAndFeel(webLookAndFeel);
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }  catch (SecurityException ex) {
+            Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         /* Create and display the form */
