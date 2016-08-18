@@ -27,6 +27,10 @@ public class URLGenerator {
         if(path.startsWith("http")){
             return path;
         }
+        if(path.startsWith("//")){
+            path = "http:"+path;
+            return path;
+        }
         if(path.startsWith("./")){
             path = path.substring(2);
         }
