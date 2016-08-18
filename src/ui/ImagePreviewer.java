@@ -9,12 +9,14 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.KeyStroke;
+import ui.image.ImageEditor;
 import ui.swing.utils.ColorController;
 import ui.swing.webLaf.WeblafUtils;
 
@@ -60,7 +62,13 @@ public class ImagePreviewer extends javax.swing.JFrame {
 
     public void previewImage(Image image) {
         this.image = image;
-        jLabel1.setIcon(new ImageIcon(image));
+        if(jLabel1.getWidth()>0 && jLabel1.getHeight()>0){
+            jLabel1.setIcon(new ImageIcon(ImageEditor.resizeImage((BufferedImage) image, jLabel1.getWidth(), jLabel1.getHeight())));
+        }
+        else{
+            jLabel1.setIcon(new ImageIcon(image));
+        }
+        
         setVisible(true);
     }
     

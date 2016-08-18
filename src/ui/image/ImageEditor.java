@@ -28,6 +28,20 @@ public class ImageEditor {
 
         return resizedImage;
     }
+    public static BufferedImage resizeImage(BufferedImage originalImage,Integer width, Integer height)
+    {
+        Dimension dimension = getScaledDimension(new Dimension(originalImage.getWidth(), originalImage.getHeight()), new Dimension(width, height));
+        int img_width = dimension.width;
+        int img_height = dimension.height;
+        
+        int type = BufferedImage.TYPE_INT_ARGB;
+        BufferedImage resizedImage = new BufferedImage(img_width, img_height, type);
+        Graphics2D g = resizedImage.createGraphics();
+        g.drawImage(originalImage, 0, 0, img_width, img_height, null);
+        g.dispose();
+
+        return resizedImage;
+    }
     
     public static Dimension getScaledDimension(Dimension imgSize, Dimension boundary) {
 
