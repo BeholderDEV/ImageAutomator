@@ -167,7 +167,7 @@ public class ImageLinkPanel extends javax.swing.JPanel {
     
     
     private void downloadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadButtonActionPerformed
-        
+        Application.getInstance().previewImage(imageLink.getImageLoader().getImage());
     }//GEN-LAST:event_downloadButtonActionPerformed
 
     private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
