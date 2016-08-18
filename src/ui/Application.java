@@ -7,6 +7,8 @@ package ui;
 
 import com.alee.laf.WebLookAndFeel;
 import java.awt.Image;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -16,6 +18,9 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author lite
  */
 public class Application {
+    
+    private static final ExecutorService service = Executors.newCachedThreadPool();
+    
     private ImagePreviewer imagePreviewer=null;
     private MainWindow mainWindow;
     private final static Application application = new Application();
@@ -45,6 +50,10 @@ public class Application {
             }
         });
     }
+
+    public MainWindow getMainWindow() {
+        return mainWindow;
+    }
     
     
     public static Application getInstance(){
@@ -58,4 +67,8 @@ public class Application {
         imagePreviewer.previewImage(image);
     }
     
+    public void performAsynchronousTask(Runnable task)
+    {
+        service.submit(task);
+    }
 }

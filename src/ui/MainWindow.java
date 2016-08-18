@@ -5,25 +5,15 @@
  */
 package ui;
 
-import com.alee.laf.WebLookAndFeel;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.UnsupportedLookAndFeelException;
-import ui.image.FileTransfer;
+import javax.swing.SwingUtilities;
 import ui.swing.utils.ColorController;
-import ui.swing.imageLink.ImageLink;
-import ui.swing.imageLink.ImageLinkRenderer;
 import ui.swing.webLaf.WeblafUtils;
 
 /**
@@ -41,7 +31,7 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(30);
         this.setLocationRelativeTo(null);
         configureTheme();
-        builder = new ListBuilder(imagePane, this);
+        builder = new ListBuilder();
         textURL.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -74,7 +64,12 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
     
-    
+    public void addImageLinkPanel(ImageLinkPanel imageLinkPanel){
+        SwingUtilities.invokeLater(() ->
+        {
+            imagePane.add(imageLinkPanel);
+        });
+    }
     
     private void configureTheme(){
         WeblafUtils.instalaWeblaf();
@@ -232,4 +227,8 @@ public class MainWindow extends javax.swing.JFrame {
     private com.alee.laf.button.WebButton webButton3;
     private com.alee.laf.button.WebButton webButton4;
     // End of variables declaration//GEN-END:variables
+
+    public void updateImages() {
+        SwingUtilities.invokeLater(() -> { repaint(); });
+    }
 }

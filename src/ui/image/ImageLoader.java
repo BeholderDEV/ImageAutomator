@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import ui.Application;
 import ui.ImageLinkPanel;
 import ui.ListBuilder;
 
@@ -43,7 +44,7 @@ public class ImageLoader{
         this.path = path;
         this.size = size;
         proxyImage = new BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB);
-        Thread t = new Thread(() -> {
+        Application.getInstance().performAsynchronousTask(() -> {
             BufferedImage bi1 = FileTransfer.downloadImage(path);
             assert(bi1 != null);
             try {
@@ -55,9 +56,8 @@ public class ImageLoader{
             } catch (Exception e) {
                 setImageThumb(ImageEditor.resizeImage(backupImage, 64));
             }
-            ListBuilder.updateWindow();
+            Application.getInstance().getMainWindow().updateImages();
         });
-        t.start();
     }
 
     public void setIlp(ImageLinkPanel ilp) {
