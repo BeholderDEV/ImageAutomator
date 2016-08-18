@@ -5,7 +5,11 @@
  */
 package ui;
 
+import com.alee.laf.WebLookAndFeel;
 import java.awt.Image;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -13,11 +17,35 @@ import java.awt.Image;
  */
 public class Application {
     private ImagePreviewer imagePreviewer=null;
-    private MainWindow mainWindow=null;
+    private MainWindow mainWindow;
     private final static Application application = new Application();
     
     private Application() {
     }
+    
+        /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        Application.getInstance().start();
+    }
+
+    private void start() {
+        try {
+            javax.swing.UIManager.setLookAndFeel(new WebLookAndFeel());
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                mainWindow = new MainWindow();
+                mainWindow.setVisible(true);
+            }
+        });
+    }
+    
     
     public static Application getInstance(){
         return application;

@@ -6,8 +6,15 @@
 package ui;
 
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.KeyStroke;
 import ui.swing.utils.ColorController;
 import ui.swing.webLaf.WeblafUtils;
 
@@ -16,6 +23,8 @@ import ui.swing.webLaf.WeblafUtils;
  * @author lite
  */
 public class ImagePreviewer extends javax.swing.JFrame {
+    
+    private Action exitAction;
     
     Image image;
     
@@ -27,6 +36,26 @@ public class ImagePreviewer extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         jPanel1.setBackground(ColorController.FUNDO_ESCURO);
         WeblafUtils.configurarBotao(webButton1,ColorController.FUNDO_ESCURO, ColorController.FUNDO_ESCURO, 10);
+        
+        createExitAction();
+        
+    }
+    
+    private void createExitAction()
+    {
+        String name = "doExit";
+        
+        exitAction = new AbstractAction(name, webButton1.getIcon()) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);        
+            }
+        };
+        
+        getRootPane().getActionMap().put(name, exitAction);
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), name);
+        
+        webButton1.setAction(exitAction);
     }
 
     public void previewImage(Image image) {
@@ -63,11 +92,7 @@ public class ImagePreviewer extends javax.swing.JFrame {
         jPanel2.setLayout(new java.awt.BorderLayout());
 
         webButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/resources/return.png"))); // NOI18N
-        webButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                webButton1ActionPerformed(evt);
-            }
-        });
+        webButton1.setHideActionText(true);
         jPanel2.add(webButton1, java.awt.BorderLayout.WEST);
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_START);
@@ -84,10 +109,6 @@ public class ImagePreviewer extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void webButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webButton1ActionPerformed
-        setVisible(false);
-    }//GEN-LAST:event_webButton1ActionPerformed
 
     /**
      * @param args the command line arguments
