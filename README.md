@@ -1,11 +1,11 @@
-** Automato
+## Automato
 ![](https://github.com/BeholderDEV/ImageAutomator/blob/master/Automato%20Imagem.png?raw=true)
 
-** Expressão Regular
-
+## Expressão Regular
+```
   ="[a-zA-Z0-9:/.\-_]+\.(jpg|png)"
-
-** Gramática
+```
+## Gramática
 
 S -> =A
 
