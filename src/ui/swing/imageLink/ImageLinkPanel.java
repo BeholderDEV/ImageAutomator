@@ -23,6 +23,7 @@ public class ImageLinkPanel extends javax.swing.JPanel {
     
     private ImageLink imageLink;
     private boolean selected = false;
+    int tamanhoMaximo = 25;
     
     /**
      * Creates new form ImageLinkPanel
@@ -39,7 +40,7 @@ public class ImageLinkPanel extends javax.swing.JPanel {
         imagePanel.setIcon(new ImageIcon(this.imageLink.getImageLoader().getImageThumb()));
         imagePanel.setText("");
         size.setText("");
-        nameLabel.setText(this.imageLink.getNome());
+        nameLabel.setText(this.imageLink.getNome().substring(0, Math.min(this.imageLink.getNome().length(), tamanhoMaximo)));
         setBackground(ColorController.COR_DESTAQUE);
         jPanel6.setBackground(ColorController.COR_PRINCIPAL);
         nameLabel.setForeground(ColorController.COR_LETRA);
@@ -73,7 +74,7 @@ public class ImageLinkPanel extends javax.swing.JPanel {
     
     public void update(){
         imagePanel.setIcon(new ImageIcon(this.imageLink.getImageLoader().getImageThumb()));
-        nameLabel.setText(this.imageLink.getNome());
+        nameLabel.setText(this.imageLink.getNome().substring(0, Math.min(this.imageLink.getNome().length(), tamanhoMaximo)));
         size.setText("("+imageLink.getImageLoader().getImageWidth()+"x"+imageLink.getImageLoader().getImageHeight()+")");
     }
 
@@ -125,6 +126,7 @@ public class ImageLinkPanel extends javax.swing.JPanel {
         jPanel5.setLayout(new java.awt.BorderLayout());
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        jPanel3.setMaximumSize(null);
         jPanel3.setOpaque(false);
         jPanel3.setLayout(new java.awt.BorderLayout());
 

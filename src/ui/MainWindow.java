@@ -166,8 +166,13 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel1.setOpaque(false);
         jPanel1.setLayout(new java.awt.BorderLayout(20, 10));
 
-        textURL.setText("http://lite.acad.univali.br/temideianarede/");
+        textURL.setText("http://boards.4channel.org/a/");
         textURL.setBorder(null);
+        textURL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textURLActionPerformed(evt);
+            }
+        });
         jPanel1.add(textURL, java.awt.BorderLayout.CENTER);
 
         webButton1.setText("Find Images");
@@ -277,6 +282,10 @@ public class MainWindow extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_webButton4ActionPerformed
+
+    private void textURLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textURLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textURLActionPerformed
 
 
 
